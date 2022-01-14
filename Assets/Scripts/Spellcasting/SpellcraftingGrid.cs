@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Spellcasting.Nodes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,7 +20,7 @@ public class SpellcraftingGrid : MonoBehaviour
   private List<int> tris;
 
   public Transform cursor;
-  private Dictionary<Vector2Int, bool> tiles = new Dictionary<Vector2Int, bool>();
+  private Dictionary<Vector2Int, Node> tiles = new Dictionary<Vector2Int, Node>();
   private void Awake()
   {
     INSTANCE = this;
@@ -40,9 +41,9 @@ public class SpellcraftingGrid : MonoBehaviour
     }
   }
 
-  public void AddNodeAtCursor()
+  public void AddNodeAtCursor(Node _node)
   {
-    tiles.Add(PositionToGrid(cursor.position),true);
+    tiles.Add(PositionToGrid(cursor.position),_node);
   }
 
   private void CreateGrid()
@@ -50,7 +51,7 @@ public class SpellcraftingGrid : MonoBehaviour
     verts = new List<Vector3>();
     tris = new List<int>();
 
-    foreach (KeyValuePair<Vector2Int, bool> tile in tiles)
+    foreach (KeyValuePair<Vector2Int, Node> tile in tiles)
     {
       CreateCell(tile.Key);
     }

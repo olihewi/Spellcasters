@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Spellcasting.Nodes
 {
-    public abstract class Node : MonoBehaviour
+    public abstract class Node
     {
         public class CompileResponse
         {

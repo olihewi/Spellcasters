@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Spellcasting.Nodes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -102,7 +103,8 @@ public class NodeSelector : MonoBehaviour
       }
       else
       {
-        SpellcraftingGrid.INSTANCE.AddNodeAtCursor();
+        Node thisNode = (Node) Activator.CreateInstance(currentCategory.nodeTypes[selection].type);
+        SpellcraftingGrid.INSTANCE.AddNodeAtCursor(thisNode);
         currentCategory = null;
         gameObject.SetActive(false);
       }

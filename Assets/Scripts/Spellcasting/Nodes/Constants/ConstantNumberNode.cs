@@ -4,8 +4,12 @@ using UnityEngine;
 
 namespace Spellcasting.Nodes.Constants
 {
-    public class ConstantNumberNode : NumberNode
+    public class ConstantNumberNode : Node
     {
+        public ConstantNumberNode()
+        {
+            
+        }
     }
 }
 

@@ -3,31 +3,20 @@ using UnityEngine;
 
 namespace Spellcasting.Nodes.Math.Vector
 {
-    public class AddVectorNode : VectorNode
+    public class AddVectorNode : Node
     {
-        public List<VectorNode> vectorInputs;
-
-        public override CompileResponse CompileInputs(Node[] inputs)
-        {
-            vectorInputs.Clear();
-            foreach (Node input in inputs)
-            {
-                if (input.GetType().IsSubclassOf(typeof(VectorNode)))
-                {
-                    vectorInputs.Add((VectorNode) input);
-                }
-            }
-
-            return vectorInputs.Count >= 1 ? CompileResponse.valid : new CompileResponse("No Vector Inputs");
-        }
         
         public override void Tick()
         {
-            value = Vector3.zero;
-            foreach (VectorNode input in vectorInputs)
+            Vector3 total = Vector3.zero;
+            foreach (Node input in inputs)
             {
-                value += input.value;
+                if (input.value is Vector3 v)
+                {
+                    total += v;
+                }
             }
+            value = total;
         }
     }
 }

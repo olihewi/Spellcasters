@@ -42,7 +42,7 @@ public class NodeSelector : MonoBehaviour
       {
         NodeDictionary.NodeCategory category = nodes.categories[i];
         NodeSelectorElement thisSelection = Instantiate(selectionPrefab, new Vector3(Mathf.Sin(separation * i) * radius, Mathf.Cos(separation * i) * radius), Quaternion.identity, transform);
-        thisSelection.name.text = category.name;
+        thisSelection.nodeName.text = category.name;
         thisSelection.description.text = category.description;
         thisSelection.image.texture = category.icon;
         currentSelections.Add(thisSelection);
@@ -55,7 +55,7 @@ public class NodeSelector : MonoBehaviour
       {
         NodeDictionary.NodeType nodeType = currentCategory.nodeTypes[i];
         NodeSelectorElement thisSelection = Instantiate(selectionPrefab, new Vector3(Mathf.Sin(separation * i) * radius, Mathf.Cos(separation * i) * radius), Quaternion.identity, transform);
-        thisSelection.name.text = nodeType.name;
+        thisSelection.nodeName.text = nodeType.name;
         thisSelection.description.text = nodeType.description;
         thisSelection.image.texture = nodeType.icon;
         currentSelections.Add(thisSelection);

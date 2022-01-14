@@ -21,6 +21,7 @@ public class SpellcraftingGrid : MonoBehaviour
 
   public Transform cursor;
   private Dictionary<Vector2Int, Node> tiles = new Dictionary<Vector2Int, Node>();
+  [HideInInspector] public List<Node> compiledNodes = new List<Node>();
   private void Awake()
   {
     INSTANCE = this;
@@ -34,7 +35,7 @@ public class SpellcraftingGrid : MonoBehaviour
     {
       Vector2Int gridPosition = PositionToGrid(hit.point);
       cursor.position = GridToPosition(gridPosition);
-      if (Mouse.current.leftButton.wasPressedThisFrame && !tiles.ContainsKey(gridPosition))
+      if (Mouse.current.rightButton.wasPressedThisFrame && !tiles.ContainsKey(gridPosition))
         NodeSelector.INSTANCE.Show();
       else if (Keyboard.current.deleteKey.wasPressedThisFrame && tiles.ContainsKey(gridPosition))
         tiles.Remove(gridPosition);
@@ -115,5 +116,10 @@ public class SpellcraftingGrid : MonoBehaviour
     if (Mathf.Abs(x) >= Mathf.Abs(y))
       return new Vector2Int(xgrid + Mathf.RoundToInt(x + 0.5F * y) + ygrid, ygrid);
     return new Vector2Int(xgrid + ygrid + Mathf.RoundToInt(y+0.5F*x), ygrid + Mathf.RoundToInt(y + 0.5F * x));
+  }
+
+  public void Compile()
+  {
+    
   }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Spellcasting.Nodes
 {
@@ -17,8 +18,11 @@ namespace Spellcasting.Nodes
             public bool isValid = true;
             public string errorMessage = "";
         }
-        public virtual CompileResponse CompileInputs(Node[] inputs) { return CompileResponse.valid; }
+        
         public virtual void Tick() {}
         public virtual void Execute() {}
+
+        public System.Object value;
+        public List<Node> inputs;
     }
 }

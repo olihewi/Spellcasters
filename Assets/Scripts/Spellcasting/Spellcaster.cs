@@ -37,6 +37,11 @@ namespace Spellcasting
             }
         }
 
+        private void Tick()
+        {
+            
+        }
+
         public void ToggleCasting()
         {
             casting = !casting;

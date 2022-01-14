@@ -2,13 +2,11 @@ using UnityEngine;
 
 namespace Spellcasting.Nodes.Selectors
 {
-    public class SelfSelectorNode : PhysicsNode
+    public class SelfSelectorNode : Node
     {
         public override void Tick()
         {
-            Rigidbody self = Spellcaster.instance.player;
-            physicsValue = self;
-            value = self.transform;
+            value = Spellcaster.instance.player;
         }
     }
 }

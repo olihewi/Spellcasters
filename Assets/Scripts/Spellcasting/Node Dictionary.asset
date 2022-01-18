@@ -15,17 +15,17 @@ MonoBehaviour:
   categories:
   - name: Input
     description: 
-    icon: {fileID: 0}
+    icon: {fileID: 2800000, guid: e16f7de3f342b994f998757374a76b38, type: 3}
     nodeTypes:
     - name: Stick Input
       description: 
-      icon: {fileID: 0}
+      icon: {fileID: 2800000, guid: b2dfdc896261921489016e8f6e32c4a8, type: 3}
       className: Input.StickInputNode
       inputs: []
       outputType: 3
   - name: Selectors
     description: 
-    icon: {fileID: 0}
+    icon: {fileID: 2800000, guid: ea9ecb3bba23b0646972c3fe0f536c08, type: 3}
     nodeTypes:
     - name: Select Caster
       description: 
@@ -37,15 +37,15 @@ MonoBehaviour:
       outputType: 4
   - name: Logic
     description: 
-    icon: {fileID: 0}
+    icon: {fileID: 2800000, guid: 084f71bf77fff1c4fb225d9592dceeda, type: 3}
     nodeTypes: []
   - name: Maths
     description: 
-    icon: {fileID: 0}
+    icon: {fileID: 2800000, guid: 98c2b753db6a3ed4fb8e84609bbd78d6, type: 3}
     nodeTypes:
     - name: Add Vectors
       description: Adds two vectors together.
-      icon: {fileID: 0}
+      icon: {fileID: 2800000, guid: 3f661b2a3590c884eb8e5399fc921a4c, type: 3}
       className: Math.Vector.AddVectorNode
       inputs:
       - type: 3
@@ -55,7 +55,7 @@ MonoBehaviour:
       outputType: 3
     - name: Scale Vector
       description: Multiplies a vector by a number.
-      icon: {fileID: 0}
+      icon: {fileID: 2800000, guid: 47c36e65a63b7d546ab07a2685573d4d, type: 3}
       className: Math.Vector.ScaleVectorNode
       inputs:
       - type: 3
@@ -65,11 +65,11 @@ MonoBehaviour:
       outputType: 3
   - name: Actions
     description: 
-    icon: {fileID: 0}
+    icon: {fileID: 2800000, guid: a1206be529475cf41b9b7f1e327e2e25, type: 3}
     nodeTypes:
     - name: Add Force
       description: Pushes an object in a given direction.
-      icon: {fileID: 0}
+      icon: {fileID: 2800000, guid: 17af6ce50ddd9ae44add116da6ca0839, type: 3}
       className: Actions.AddForceNode
       inputs:
       - type: 4
@@ -79,13 +79,14 @@ MonoBehaviour:
       outputType: 0
   - name: Debug
     description: 
-    icon: {fileID: 0}
+    icon: {fileID: 2800000, guid: 3e1eb0d075cf5204091348b9786adb57, type: 3}
     nodeTypes:
     - name: Print
       description: 
-      icon: {fileID: 0}
+      icon: {fileID: 2800000, guid: 918691d60f42a7d4494db9a53c9e7fc6, type: 3}
       className: Debug.DebugNode
       inputs:
       - type: 1
         name: 
       outputType: 0
+  packedTextures: {fileID: 0}

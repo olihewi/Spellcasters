@@ -16,8 +16,10 @@ public class SpellcraftingGrid : MonoBehaviour
   [Range(0.0F,0.25F)] public float hexagonSeparation = 1.0F;
 
   private MeshFilter meshFilter;
+  private MeshRenderer meshRenderer;
   private List<Vector3> verts;
   private List<int> tris;
+  private List<Vector2> uvs;
 
   public Transform cursor;
   public Dictionary<Vector2Int, Node> tiles = new Dictionary<Vector2Int, Node>();
@@ -25,6 +27,8 @@ public class SpellcraftingGrid : MonoBehaviour
   {
     INSTANCE = this;
     meshFilter = GetComponent<MeshFilter>();
+    meshRenderer = GetComponent<MeshRenderer>();
+    NodeDictionary.INSTANCE.PackTextures();
   }
   private void Update()
   {
@@ -60,23 +64,26 @@ public class SpellcraftingGrid : MonoBehaviour
   {
     verts = new List<Vector3>();
     tris = new List<int>();
+    uvs = new List<Vector2>();
 
     foreach (KeyValuePair<Vector2Int, Node> tile in tiles)
     {
-      CreateCell(tile.Key);
+      CreateCell(tile);
     }
     
     Mesh mesh = new Mesh();
     mesh.name = "Hex Grid";
     mesh.vertices = verts.ToArray();
     mesh.triangles = tris.ToArray();
+    mesh.uv = uvs.ToArray();
     mesh.RecalculateNormals();
     meshFilter.mesh = mesh;
+    meshRenderer.material.mainTexture = NodeDictionary.INSTANCE.packedTextures;
   }
 
-  private void CreateCell(Vector2Int _gridPos)
+  private void CreateCell(KeyValuePair<Vector2Int, Node> _node)
   {
-    Vector3 position = GridToPosition(_gridPos);
+    Vector3 position = GridToPosition(_node.Key);
     int triOffset = verts.Count;
     verts.AddRange(new []
     {
@@ -96,6 +103,18 @@ public class SpellcraftingGrid : MonoBehaviour
       triOffset, triOffset + 4, triOffset + 5,
       triOffset, triOffset + 5, triOffset + 6,
       triOffset, triOffset + 6, triOffset + 1
+    });
+    Rect rect = NodeDictionary.INSTANCE.textureReference[_node.Value.GetType()];
+    float margin = rect.height * 0.267949192F;
+    uvs.AddRange(new []
+    {
+      rect.center,
+      new Vector2(rect.center.x, rect.yMax),
+      new Vector2(rect.xMax, rect.yMax - margin),
+      new Vector2(rect.xMax, rect.yMin + margin),
+      new Vector2(rect.center.x, rect.yMin),
+      new Vector2(rect.xMin, rect.yMin + margin),
+      new Vector2(rect.xMin, rect.yMax - margin) 
     });
   }
 

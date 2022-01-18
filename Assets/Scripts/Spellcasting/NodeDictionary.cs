@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Spellcasting.Nodes;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Spellcasters/Node Dictionary")]
@@ -44,6 +45,8 @@ public class NodeDictionary : ScriptableObject
   
   public List<NodeCategory> categories;
   public Dictionary<Type, NodeType> nodeReference;
+  public Texture2D packedTextures;
+  public Dictionary<Type, Rect> textureReference;
   public static NodeDictionary INSTANCE;
 
   private void OnValidate()
@@ -67,6 +70,25 @@ public class NodeDictionary : ScriptableObject
         }
         nodeReference.Add(nodeType.type, nodeType);
       }
+    }
+  }
+
+  public void PackTextures()
+  {
+    List<Texture2D> texturesToPack = new List<Texture2D>();
+    foreach (KeyValuePair<Type, NodeType> nodeTypePair in nodeReference)
+    {
+      texturesToPack.Add(nodeTypePair.Value.icon);
+    }
+    int textureSize = (int) (Mathf.Sqrt(texturesToPack.Count) * 256.0F);
+    packedTextures = new Texture2D(textureSize,textureSize);
+    Rect[] rects = packedTextures.PackTextures(texturesToPack.ToArray(), 0, textureSize);
+    textureReference = new Dictionary<Type, Rect>();
+    int i = 0;
+    foreach (KeyValuePair<Type, NodeType> nodeTypePair in nodeReference)
+    {
+      textureReference.Add(nodeTypePair.Key, rects[i]);
+      i++;
     }
   }
 }

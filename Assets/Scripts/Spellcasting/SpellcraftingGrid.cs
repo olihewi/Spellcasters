@@ -21,7 +21,6 @@ public class SpellcraftingGrid : MonoBehaviour
 
   public Transform cursor;
   private Dictionary<Vector2Int, Node> tiles = new Dictionary<Vector2Int, Node>();
-  [HideInInspector] public List<Node> compiledNodes = new List<Node>();
   private void Awake()
   {
     INSTANCE = this;
@@ -40,11 +39,21 @@ public class SpellcraftingGrid : MonoBehaviour
       else if (Keyboard.current.deleteKey.wasPressedThisFrame && tiles.ContainsKey(gridPosition))
         tiles.Remove(gridPosition);
     }
+    
+    foreach (KeyValuePair<Vector2Int, Node> nodePair in tiles)
+    {
+      nodePair.Value.Tick();
+    }
+    foreach (KeyValuePair<Vector2Int, Node> nodePair in tiles)
+    {
+      nodePair.Value.Execute();
+    }
   }
 
   public void AddNodeAtCursor(Node _node)
   {
     tiles.Add(PositionToGrid(cursor.position),_node);
+    Compile();
   }
 
   private void CreateGrid()
@@ -120,6 +129,32 @@ public class SpellcraftingGrid : MonoBehaviour
 
   public void Compile()
   {
-    
+    foreach (KeyValuePair<Vector2Int, Node> nodePair in tiles)
+    {
+      Node node = nodePair.Value;
+      NodeDictionary.NodeType nodeType = NodeDictionary.INSTANCE.nodeReference[node.GetType()];
+      node.inputs.Clear();
+      foreach (NodeDictionary.NodeInputDesc desc in nodeType.inputs)
+      {
+        foreach (Vector2Int pos in new[]
+        {
+          nodePair.Key + Vector2Int.up,
+          nodePair.Key + Vector2Int.one,
+          nodePair.Key + Vector2Int.right,
+          nodePair.Key + Vector2Int.down,
+          nodePair.Key - Vector2Int.one,
+          nodePair.Key + Vector2Int.left
+        })
+        {
+          if (!tiles.ContainsKey(pos)) continue;
+          Node otherNode = tiles[pos];
+          if (NodeDictionary.INSTANCE.nodeReference[otherNode.GetType()].outputType == desc.type || desc.type == NodeDictionary.NodeInputType.ANY)
+          {
+            node.inputs.Add(otherNode);
+            break;
+          }
+        }
+      }
+    }
   }
 }

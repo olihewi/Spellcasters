@@ -6,17 +6,9 @@ namespace Spellcasting.Nodes.Actions
     {
         public override void Execute()
         {
-            foreach (Node input in inputs)
-            {
-                if (!(input.value is Rigidbody rb)) continue;
-                foreach (Node input2 in inputs)
-                {
-                    if (!(input2.value is Vector3 v)) continue;
-                    rb.AddForce(v, ForceMode.Force);
-                    break;
-                }
-                break;
-            }
+            if (!(inputs[0].value is Rigidbody rb)) return;
+            if (!(inputs[1].value is Vector3 v)) return;
+            rb.AddForce(v, ForceMode.Force);
         }
     }
 }

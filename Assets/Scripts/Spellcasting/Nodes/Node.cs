@@ -23,6 +23,6 @@ namespace Spellcasting.Nodes
         public virtual void Execute() {}
 
         public System.Object value;
-        public List<Node> inputs;
+        public List<Node> inputs = new List<Node>();
     }
 }

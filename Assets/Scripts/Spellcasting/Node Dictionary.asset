@@ -21,6 +21,8 @@ MonoBehaviour:
       description: 
       icon: {fileID: 0}
       className: Input.StickInputNode
+      inputs: []
+      outputType: 3
   - name: Logic
     description: 
     icon: {fileID: 0}
@@ -28,12 +30,50 @@ MonoBehaviour:
   - name: Maths
     description: 
     icon: {fileID: 0}
-    nodeTypes: []
+    nodeTypes:
+    - name: Add Vectors
+      description: 
+      icon: {fileID: 0}
+      className: Math.Vector.AddVectorNode
+      inputs:
+      - type: 3
+        name: Vector A
+      - type: 3
+        name: Vector B
+      outputType: 3
+    - name: Scale Vector
+      description: 
+      icon: {fileID: 0}
+      className: Math.Vector.ScaleVectorNode
+      inputs:
+      - type: 3
+        name: Vector
+      - type: 2
+        name: Scalar
+      outputType: 3
   - name: Actions
     description: 
     icon: {fileID: 0}
-    nodeTypes: []
+    nodeTypes:
+    - name: Add Force
+      description: Pushes an object in a given direction.
+      icon: {fileID: 0}
+      className: Actions.AddForceNode
+      inputs:
+      - type: 4
+        name: Object
+      - type: 3
+        name: Force
+      outputType: 0
   - name: Debug
     description: 
     icon: {fileID: 0}
-    nodeTypes: []
+    nodeTypes:
+    - name: Print
+      description: 
+      icon: {fileID: 0}
+      className: Debug.DebugNode
+      inputs:
+      - type: 0
+        name: 
+      outputType: 1

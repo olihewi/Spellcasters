@@ -11,6 +11,7 @@ namespace Spellcasting.Nodes.Input
         {
             Vector3 v = StaticInput.input.Gameplay.PrimaryStick.ReadValue<Vector2>();
             v.z = v.y;
+            v.y = 0.0F;
             value = v;
         }
     }

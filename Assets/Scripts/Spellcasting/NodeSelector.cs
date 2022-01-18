@@ -28,6 +28,7 @@ public class NodeSelector : MonoBehaviour
   public void Show()
   {
     gameObject.SetActive(true);
+    selection = 0;
     foreach (NodeSelectorElement thisSelection in currentSelections)
     {
       Destroy(thisSelection.gameObject);
@@ -79,7 +80,6 @@ public class NodeSelector : MonoBehaviour
     {
       selector.transform.localScale = Vector3.one;
     }
-    currentSelections[selection].transform.localScale *= 1.25F;
     
     if (Mouse.current.rightButton.wasPressedThisFrame)
     {
@@ -109,5 +109,11 @@ public class NodeSelector : MonoBehaviour
         gameObject.SetActive(false);
       }
     }
+  }
+
+  private void LateUpdate()
+  {
+    currentSelections[selection].transform.localScale *= 1.25F;
+    currentSelections[selection].description.enabled = true;
   }
 }

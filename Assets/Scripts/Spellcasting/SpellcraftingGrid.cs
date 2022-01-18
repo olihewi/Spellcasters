@@ -20,7 +20,7 @@ public class SpellcraftingGrid : MonoBehaviour
   private List<int> tris;
 
   public Transform cursor;
-  private Dictionary<Vector2Int, Node> tiles = new Dictionary<Vector2Int, Node>();
+  public Dictionary<Vector2Int, Node> tiles = new Dictionary<Vector2Int, Node>();
   private void Awake()
   {
     INSTANCE = this;
@@ -32,8 +32,8 @@ public class SpellcraftingGrid : MonoBehaviour
     Ray mouseRay = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
     if (!NodeSelector.INSTANCE.gameObject.activeSelf && Physics.Raycast(mouseRay, out RaycastHit hit))
     {
-      Vector2Int gridPosition = PositionToGrid(hit.point);
-      cursor.position = GridToPosition(gridPosition);
+      Vector2Int gridPosition = PositionToGrid(transform.InverseTransformPoint(hit.point));
+      cursor.position = transform.TransformPoint(GridToPosition(gridPosition));
       if (Mouse.current.rightButton.wasPressedThisFrame && !tiles.ContainsKey(gridPosition))
         NodeSelector.INSTANCE.Show();
       else if (Keyboard.current.deleteKey.wasPressedThisFrame && tiles.ContainsKey(gridPosition))

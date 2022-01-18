@@ -10,8 +10,7 @@ namespace Spellcasting
     {
         public static Spellcaster instance;
         public Rigidbody player;
-        public bool casting;
-        public List<Node> nodes;
+        public SpellcraftingGrid spellcraftingGrid;
 
         private void Awake()
         {
@@ -19,32 +18,24 @@ namespace Spellcasting
         }
         private void Start()
         {
-            nodes.AddRange(GetComponentsInChildren<Node>());
             StaticInput.input.Gameplay.OpenProgramming.performed += _ => ToggleCasting();
         }
 
         private void Update()
         {
-            if (!casting) return;
-            
-            foreach (Node node in nodes)
+            foreach (KeyValuePair<Vector2Int, Node> nodePair in spellcraftingGrid.tiles)
             {
-                node.Tick();
+                nodePair.Value.Tick();
             }
-            foreach (Node node in nodes)
+            foreach (KeyValuePair<Vector2Int, Node> nodePair in spellcraftingGrid.tiles)
             {
-                node.Execute();
+                nodePair.Value.Execute();
             }
-        }
-
-        private void Tick()
-        {
-            
         }
 
         public void ToggleCasting()
         {
-            casting = !casting;
+            spellcraftingGrid.gameObject.SetActive(!spellcraftingGrid.gameObject.activeSelf);
         }
     }
 }

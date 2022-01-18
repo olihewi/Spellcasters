@@ -10,4 +10,9 @@ public class NodeSelectorElement : MonoBehaviour
     public RawImage image;
     public TextMeshProUGUI nodeName;
     public TextMeshProUGUI description;
+
+    private void Update()
+    {
+        description.enabled = false;
+    }
 }

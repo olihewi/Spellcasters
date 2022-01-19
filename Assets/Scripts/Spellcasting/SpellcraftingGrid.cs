@@ -23,6 +23,11 @@ public class SpellcraftingGrid : MonoBehaviour
 
   public Transform cursor;
   public Dictionary<Vector2Int, Node> tiles = new Dictionary<Vector2Int, Node>();
+
+  public Camera mainCamera;
+  public Camera spellcraftingCamera;
+  public LayerMask layerMask;
+
   private void Awake()
   {
     INSTANCE = this;
@@ -33,24 +38,15 @@ public class SpellcraftingGrid : MonoBehaviour
   private void Update()
   {
     CreateGrid();
-    Ray mouseRay = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-    if (!NodeSelector.INSTANCE.gameObject.activeSelf && Physics.Raycast(mouseRay, out RaycastHit hit))
+    Ray mouseRay = spellcraftingCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+    if (!NodeSelector.INSTANCE.gameObject.activeSelf && Physics.Raycast(mouseRay, out RaycastHit hit, Mathf.Infinity, layerMask))
     {
-      Vector2Int gridPosition = PositionToGrid(transform.InverseTransformPoint(hit.point));
-      cursor.position = transform.TransformPoint(GridToPosition(gridPosition));
+      Vector2Int gridPosition = PositionToGrid(hit.point);
+      cursor.position = transform.TransformPoint(GridToPosition(gridPosition) + Vector3.back * 0.1F);
       if (Mouse.current.rightButton.wasPressedThisFrame && !tiles.ContainsKey(gridPosition))
         NodeSelector.INSTANCE.Show();
       else if (Keyboard.current.deleteKey.wasPressedThisFrame && tiles.ContainsKey(gridPosition))
         tiles.Remove(gridPosition);
-    }
-    
-    foreach (KeyValuePair<Vector2Int, Node> nodePair in tiles)
-    {
-      nodePair.Value.Tick();
-    }
-    foreach (KeyValuePair<Vector2Int, Node> nodePair in tiles)
-    {
-      nodePair.Value.Execute();
     }
   }
 
@@ -153,27 +149,36 @@ public class SpellcraftingGrid : MonoBehaviour
       Node node = nodePair.Value;
       NodeDictionary.NodeType nodeType = NodeDictionary.INSTANCE.nodeReference[node.GetType()];
       node.inputs.Clear();
+      List<Vector2Int> neighbours = new List<Vector2Int>
+      {
+        nodePair.Key + Vector2Int.up,
+        nodePair.Key + Vector2Int.one,
+        nodePair.Key + Vector2Int.right,
+        nodePair.Key + Vector2Int.down,
+        nodePair.Key - Vector2Int.one,
+        nodePair.Key + Vector2Int.left
+      };
       foreach (NodeDictionary.NodeInputDesc desc in nodeType.inputs)
       {
-        foreach (Vector2Int pos in new[]
-        {
-          nodePair.Key + Vector2Int.up,
-          nodePair.Key + Vector2Int.one,
-          nodePair.Key + Vector2Int.right,
-          nodePair.Key + Vector2Int.down,
-          nodePair.Key - Vector2Int.one,
-          nodePair.Key + Vector2Int.left
-        })
+        foreach (Vector2Int pos in neighbours)
         {
           if (!tiles.ContainsKey(pos)) continue;
           Node otherNode = tiles[pos];
           if (NodeDictionary.INSTANCE.nodeReference[otherNode.GetType()].outputType == desc.type || desc.type == NodeDictionary.NodeInputType.ANY)
           {
             node.inputs.Add(otherNode);
+            neighbours.Remove(pos);
             break;
           }
         }
       }
     }
+  }
+
+  public void ToggleEnabled()
+  {
+    mainCamera.enabled = gameObject.activeSelf;
+    gameObject.SetActive(!gameObject.activeSelf);
+    spellcraftingCamera.enabled = gameObject.activeSelf;
   }
 }

@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 6853070999122406283}
-  name: {fileID: 6531671791595134121}
+  nodeName: {fileID: 6531671791595134121}
   description: {fileID: 2983792079931938225}
 --- !u!1 &3272648427160189968
 GameObject:

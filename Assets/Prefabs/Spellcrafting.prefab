@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 4537647889083750677}
   - component: {fileID: 4537647889083750676}
   - component: {fileID: 4537647889083750675}
-  - component: {fileID: 4537647889083750674}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,20 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4537647889083750674
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4537647889083750673}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &4537647889969450762
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,15 +94,14 @@ GameObject:
   - component: {fileID: 4537647889969450763}
   - component: {fileID: 4537647889969450766}
   - component: {fileID: 4537647889969450765}
-  - component: {fileID: 4537647889969450767}
   - component: {fileID: 4537647889969450768}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spellcrafting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4537647889969450764
 Transform:
   m_ObjectHideFlags: 0
@@ -150,6 +134,8 @@ MonoBehaviour:
   hexagonRadius: 0.5
   hexagonSeparation: 0
   cursor: {fileID: 4537647889083750677}
+  mainCamera: {fileID: 0}
+  spellcraftingCamera: {fileID: 0}
 --- !u!33 &4537647889969450766
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -200,20 +186,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4537647889969450767
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4537647889969450762}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!65 &4537647889969450768
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -240,7 +212,7 @@ GameObject:
   - component: {fileID: 4537647890026924679}
   - component: {fileID: 4537647890026924678}
   - component: {fileID: 4537647890026924677}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Node Selector
   m_TagString: Untagged
   m_Icon: {fileID: 0}

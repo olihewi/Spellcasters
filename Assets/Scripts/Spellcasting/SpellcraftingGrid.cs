@@ -21,7 +21,7 @@ public class SpellcraftingGrid : MonoBehaviour
   private List<int> tris;
   private List<Vector2> uvs;
 
-  public Transform cursor;
+  public SpellcraftingCursor cursor;
   public Dictionary<Vector2Int, Node> tiles = new Dictionary<Vector2Int, Node>();
 
   public Camera mainCamera;
@@ -42,7 +42,8 @@ public class SpellcraftingGrid : MonoBehaviour
     if (!NodeSelector.INSTANCE.gameObject.activeSelf && Physics.Raycast(mouseRay, out RaycastHit hit, Mathf.Infinity, layerMask))
     {
       Vector2Int gridPosition = PositionToGrid(hit.point);
-      cursor.position = transform.TransformPoint(GridToPosition(gridPosition) + Vector3.back * 0.1F);
+      cursor.transform.position = transform.TransformPoint(GridToPosition(gridPosition) + Vector3.back * 0.1F);
+      cursor.nodeName.text = tiles.ContainsKey(gridPosition) ? NodeDictionary.INSTANCE.nodeReference[tiles[gridPosition].GetType()].name : "";
       if (Mouse.current.rightButton.wasPressedThisFrame && !tiles.ContainsKey(gridPosition))
         NodeSelector.INSTANCE.Show();
       else if (Keyboard.current.deleteKey.wasPressedThisFrame && tiles.ContainsKey(gridPosition))
@@ -52,7 +53,7 @@ public class SpellcraftingGrid : MonoBehaviour
 
   public void AddNodeAtCursor(Node _node)
   {
-    tiles.Add(PositionToGrid(cursor.position),_node);
+    tiles.Add(PositionToGrid(cursor.transform.position),_node);
     Compile();
   }
 

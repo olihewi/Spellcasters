@@ -527,11 +527,6 @@ PrefabInstance:
       objectReference: {fileID: 566526647}
     - target: {fileID: 4537647889969450763, guid: 726a4388e419e3d48832559d2cbb06e7,
         type: 3}
-      propertyPath: layerMask.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
-    - target: {fileID: 4537647889969450763, guid: 726a4388e419e3d48832559d2cbb06e7,
-        type: 3}
       propertyPath: spellcraftingCamera
       value: 
       objectReference: {fileID: 1270284447}
@@ -588,11 +583,6 @@ PrefabInstance:
     - target: {fileID: 4537647889969450764, guid: 726a4388e419e3d48832559d2cbb06e7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4537647889969450768, guid: 726a4388e419e3d48832559d2cbb06e7,
-        type: 3}
-      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

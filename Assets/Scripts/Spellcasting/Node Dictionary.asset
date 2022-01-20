@@ -18,35 +18,35 @@ MonoBehaviour:
     icon: {fileID: 2800000, guid: e16f7de3f342b994f998757374a76b38, type: 3}
     nodeTypes:
     - name: Left Stick Input
-      description: 
+      description: Outputs the current direction of the left stick.
       icon: {fileID: 2800000, guid: b2dfdc896261921489016e8f6e32c4a8, type: 3}
       className: Input.StickInputNode
       inputs: []
       outputType: 3
     - name: Right Stick Input
-      description: 
-      icon: {fileID: 2800000, guid: b2dfdc896261921489016e8f6e32c4a8, type: 3}
+      description: Outputs the current direction of the right stick.
+      icon: {fileID: 2800000, guid: 8b1956cbc011c7c4c91a25ad1584f72e, type: 3}
       className: Input.RightStickInputNode
       inputs: []
       outputType: 3
     - name: Button Pressed
-      description: Returns 1 when a button has been pressed this frame.
-      icon: {fileID: 2800000, guid: 47c36e65a63b7d546ab07a2685573d4d, type: 3}
+      description: Outputs 1 when a button has been pressed.
+      icon: {fileID: 2800000, guid: 8dc1b8d8ff2ef714692a7c63fc308eca, type: 3}
       className: Input.ButtonPressedNode
       inputs: []
       outputType: 2
     - name: Constant Number
-      description: Input a constant number
-      icon: {fileID: 2800000, guid: 47c36e65a63b7d546ab07a2685573d4d, type: 3}
+      description: Type a number to input.
+      icon: {fileID: 2800000, guid: a731b65a366ff684da2e575fba1f4181, type: 3}
       className: Constants.ConstantNumberNode
       inputs: []
       outputType: 2
   - name: Selectors
-    description: 
+    description: The targets of your spell.
     icon: {fileID: 2800000, guid: ea9ecb3bba23b0646972c3fe0f536c08, type: 3}
     nodeTypes:
     - name: Select Caster
-      description: 
+      description: The caster of the spell.
       icon: {fileID: 2800000, guid: a816759bcd6548546a762ce64b634f09, type: 3}
       className: Selectors.SelfSelectorNode
       inputs:
@@ -54,11 +54,11 @@ MonoBehaviour:
         name: 
       outputType: 4
   - name: Logic
-    description: 
+    description: Branching, Loops and Sequencing
     icon: {fileID: 2800000, guid: 084f71bf77fff1c4fb225d9592dceeda, type: 3}
     nodeTypes: []
   - name: Maths
-    description: 
+    description: Adjust the conditions of your spell.
     icon: {fileID: 2800000, guid: 98c2b753db6a3ed4fb8e84609bbd78d6, type: 3}
     nodeTypes:
     - name: Add Vectors
@@ -72,7 +72,7 @@ MonoBehaviour:
         name: Vector B
       outputType: 3
     - name: Scale Vector
-      description: Multiplies a vector by a number.
+      description: Multiplies a Vector by a Number.
       icon: {fileID: 2800000, guid: 47c36e65a63b7d546ab07a2685573d4d, type: 3}
       className: Math.Vector.ScaleVectorNode
       inputs:
@@ -81,9 +81,9 @@ MonoBehaviour:
       - type: 2
         name: Scalar
       outputType: 3
-    - name: Transform Direction
-      description: Orients a vector relative to an object.
-      icon: {fileID: 2800000, guid: 47c36e65a63b7d546ab07a2685573d4d, type: 3}
+    - name: Relative Direction
+      description: Orients a Vector relative to an object.
+      icon: {fileID: 2800000, guid: 7ce72672a372d05428ba4b95f0a0e8b8, type: 3}
       className: Math.Vector.TransformDirectionNode
       inputs:
       - type: 4
@@ -92,8 +92,8 @@ MonoBehaviour:
         name: Direction
       outputType: 3
     - name: Get Mass
-      description: Gets the mass of an object
-      icon: {fileID: 2800000, guid: 47c36e65a63b7d546ab07a2685573d4d, type: 3}
+      description: Gets the mass of an object.
+      icon: {fileID: 2800000, guid: 10778f25db6e3b442aa9f2186a605367, type: 3}
       className: Math.Physics.GetMassNode
       inputs:
       - type: 4
@@ -101,7 +101,7 @@ MonoBehaviour:
       outputType: 2
     - name: Construct Vector
       description: Creates a Vector from three Numbers.
-      icon: {fileID: 2800000, guid: 47c36e65a63b7d546ab07a2685573d4d, type: 3}
+      icon: {fileID: 2800000, guid: cb1065e7377e8a44bb7786bf7f43df2e, type: 3}
       className: Math.Vector.ConstructVectorNode
       inputs:
       - type: 2
@@ -112,7 +112,7 @@ MonoBehaviour:
         name: Z
       outputType: 3
   - name: Actions
-    description: 
+    description: The oomph of your spell.
     icon: {fileID: 2800000, guid: a1206be529475cf41b9b7f1e327e2e25, type: 3}
     nodeTypes:
     - name: Add Force
@@ -127,7 +127,7 @@ MonoBehaviour:
       outputType: 0
     - name: Add Impulse
       description: Applies an impulse to an object.
-      icon: {fileID: 2800000, guid: 17af6ce50ddd9ae44add116da6ca0839, type: 3}
+      icon: {fileID: 2800000, guid: 7220272a68e63544baf80a0c0284bec9, type: 3}
       className: Actions.AddImpulseNode
       inputs:
       - type: 4
@@ -137,7 +137,7 @@ MonoBehaviour:
       outputType: 0
     - name: Rotate
       description: Rotates an object by a given vector.
-      icon: {fileID: 2800000, guid: 17af6ce50ddd9ae44add116da6ca0839, type: 3}
+      icon: {fileID: 2800000, guid: 8d38c3e3b16d77a4ab07ca132cd37005, type: 3}
       className: Actions.RotateNode
       inputs:
       - type: 4
@@ -146,11 +146,11 @@ MonoBehaviour:
         name: Force
       outputType: 0
   - name: Debug
-    description: 
+    description: Help in fixing your spells.
     icon: {fileID: 2800000, guid: 3e1eb0d075cf5204091348b9786adb57, type: 3}
     nodeTypes:
     - name: Print
-      description: 
+      description: Outputs any given input.
       icon: {fileID: 2800000, guid: 918691d60f42a7d4494db9a53c9e7fc6, type: 3}
       className: Debug.DebugNode
       inputs:

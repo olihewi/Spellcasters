@@ -42,7 +42,8 @@ public class NodeSelector : MonoBehaviour
       for (int i = 0; i < nodes.categories.Count; i++)
       {
         NodeDictionary.NodeCategory category = nodes.categories[i];
-        NodeSelectorElement thisSelection = Instantiate(selectionPrefab, transform.position + new Vector3(Mathf.Sin(separation * i) * radius, Mathf.Cos(separation * i) * radius), transform.rotation, transform);
+        NodeSelectorElement thisSelection = Instantiate(selectionPrefab, transform.position, transform.rotation, transform);
+        thisSelection.transform.position = thisSelection.transform.TransformPoint(new Vector3(Mathf.Sin(separation * i) * radius, Mathf.Cos(separation * i) * radius));
         thisSelection.nodeName.text = category.name;
         thisSelection.description.text = category.description;
         thisSelection.image.texture = category.icon;
@@ -55,7 +56,8 @@ public class NodeSelector : MonoBehaviour
       for (int i = 0; i < currentCategory.nodeTypes.Count; i++)
       {
         NodeDictionary.NodeType nodeType = currentCategory.nodeTypes[i];
-        NodeSelectorElement thisSelection = Instantiate(selectionPrefab, transform.position + new Vector3(Mathf.Sin(separation * i) * radius, Mathf.Cos(separation * i) * radius), transform.rotation, transform);
+        NodeSelectorElement thisSelection = Instantiate(selectionPrefab, transform.position, transform.rotation, transform);
+        thisSelection.transform.position = thisSelection.transform.TransformPoint(new Vector3(Mathf.Sin(separation * i) * radius, Mathf.Cos(separation * i) * radius));
         thisSelection.nodeName.text = nodeType.name;
         thisSelection.description.text = nodeType.description;
         thisSelection.image.texture = nodeType.icon;

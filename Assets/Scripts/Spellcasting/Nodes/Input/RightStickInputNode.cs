@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class RightStickInput : MonoBehaviour
+namespace Spellcasting.Nodes.Input
 {
-    // Start is called before the first frame update
-    void Start()
+  public class RightStickInputNode : Node
+  {
+    public override void Tick()
     {
-        
+      Vector3 v = StaticInput.input.Gameplay.SecondaryStick.ReadValue<Vector2>();
+      value = new Vector3(v.x, v.y, 0.0F);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  }
 }

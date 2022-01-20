@@ -44,6 +44,7 @@ public class SpellcraftingGrid : MonoBehaviour
       Vector2Int gridPosition = PositionToGrid(hit.point);
       cursor.transform.position = transform.TransformPoint(GridToPosition(gridPosition) + Vector3.back * 0.1F);
       cursor.nodeName.text = tiles.ContainsKey(gridPosition) ? NodeDictionary.INSTANCE.nodeReference[tiles[gridPosition].GetType()].name : "";
+      cursor.background.gameObject.SetActive(tiles.ContainsKey(gridPosition));
       if (Mouse.current.leftButton.wasPressedThisFrame && tiles.ContainsKey(gridPosition))
         tiles[gridPosition].OnSelectedInGrid();
       if (Mouse.current.rightButton.wasPressedThisFrame && !tiles.ContainsKey(gridPosition))

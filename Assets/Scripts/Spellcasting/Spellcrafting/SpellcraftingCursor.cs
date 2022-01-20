@@ -6,4 +6,5 @@ using TMPro;
 public class SpellcraftingCursor : MonoBehaviour
 {
   public TextMeshPro nodeName;
+  public Transform background;
 }

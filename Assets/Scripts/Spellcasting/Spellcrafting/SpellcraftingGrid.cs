@@ -156,7 +156,6 @@ public class SpellcraftingGrid : MonoBehaviour
         pos -= difference / 2.0F;
         int offset = v.Count;
         float angleBetween = Mathf.Atan2(difference.y, -difference.x);
-        Debug.Log(angleBetween);
         v.AddRange(new[]
         {
           pos + RotatePoint(new Vector3(-0.075F, 0.1F, 0.0F), angleBetween),

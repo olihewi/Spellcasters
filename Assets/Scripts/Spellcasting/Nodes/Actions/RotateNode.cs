@@ -14,7 +14,7 @@ namespace Spellcasting.Nodes.Actions
       {
         Transform camera = rb.GetComponent<Player>().cameraTransform.transform;
         rb.transform.Rotate(Vector3.up,v.x * Time.deltaTime, Space.Self);
-        camera.Rotate(Vector3.left, v.y * Time.deltaTime, Space.Self);
+        camera.Rotate(Vector3.left, v.z * Time.deltaTime, Space.Self);
       }
       else
       {

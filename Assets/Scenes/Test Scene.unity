@@ -529,10 +529,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1270284446}
     m_Modifications:
+    - target: {fileID: 1574394281, guid: 726a4388e419e3d48832559d2cbb06e7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4537647889969450762, guid: 726a4388e419e3d48832559d2cbb06e7,
         type: 3}
       propertyPath: m_Name
       value: Spellcrafting
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537647889969450762, guid: 726a4388e419e3d48832559d2cbb06e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4537647889969450763, guid: 726a4388e419e3d48832559d2cbb06e7,
         type: 3}
@@ -541,9 +550,20 @@ PrefabInstance:
       objectReference: {fileID: 566526647}
     - target: {fileID: 4537647889969450763, guid: 726a4388e419e3d48832559d2cbb06e7,
         type: 3}
+      propertyPath: inputMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: a85540e2057aea94c8fa8931f828d767, type: 2}
+    - target: {fileID: 4537647889969450763, guid: 726a4388e419e3d48832559d2cbb06e7,
+        type: 3}
       propertyPath: spellcraftingCamera
       value: 
       objectReference: {fileID: 1270284447}
+    - target: {fileID: 4537647889969450763, guid: 726a4388e419e3d48832559d2cbb06e7,
+        type: 3}
+      propertyPath: nodeIconStringPrefab
+      value: 
+      objectReference: {fileID: 4512055068204465641, guid: 085a55c61848dff40b6f7d34d3bfc82a,
+        type: 3}
     - target: {fileID: 4537647889969450764, guid: 726a4388e419e3d48832559d2cbb06e7,
         type: 3}
       propertyPath: m_RootOrder
@@ -598,6 +618,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537647890026924676, guid: 726a4388e419e3d48832559d2cbb06e7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.15
       objectReference: {fileID: 0}
     - target: {fileID: 4537647890026924677, guid: 726a4388e419e3d48832559d2cbb06e7,
         type: 3}

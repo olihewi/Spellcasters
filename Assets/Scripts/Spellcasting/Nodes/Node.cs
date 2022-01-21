@@ -22,6 +22,7 @@ namespace Spellcasting.Nodes
     public virtual void Tick() { }
     public virtual void Execute() { }
     public virtual void OnSelectedInGrid() { }
+    public virtual string GetIconString() { return ""; }
 
     public System.Object value;
     public List<Node> inputs = new List<Node>();

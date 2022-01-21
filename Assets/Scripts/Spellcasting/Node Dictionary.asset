@@ -111,6 +111,16 @@ MonoBehaviour:
       - type: 2
         name: Z
       outputType: 3
+    - name: Multiply Number
+      description: Multiplies two numbers.
+      icon: {fileID: 2800000, guid: 5378e2f26c90d444f83fe5621e8ee7b2, type: 3}
+      className: Math.Number.MultiplyNumberNode
+      inputs:
+      - type: 2
+        name: X
+      - type: 2
+        name: Y
+      outputType: 2
   - name: Actions
     description: The oomph of your spell.
     icon: {fileID: 2800000, guid: a1206be529475cf41b9b7f1e327e2e25, type: 3}

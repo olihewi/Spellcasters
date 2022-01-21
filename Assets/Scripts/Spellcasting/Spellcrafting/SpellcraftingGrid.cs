@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Spellcasting.Nodes;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,11 +24,12 @@ public class SpellcraftingGrid : MonoBehaviour
 
   public SpellcraftingCursor cursor;
   public Dictionary<Vector2Int, Node> tiles = new Dictionary<Vector2Int, Node>();
+  private List<TextMeshPro> nodeIconStrings = new List<TextMeshPro>();
 
   public Camera mainCamera;
   public Camera spellcraftingCamera;
   public LayerMask layerMask;
-
+  public TextMeshPro nodeIconStringPrefab;
   private void Awake()
   {
     INSTANCE = this;
@@ -42,14 +44,21 @@ public class SpellcraftingGrid : MonoBehaviour
     if (!NodeSelector.INSTANCE.gameObject.activeSelf && Physics.Raycast(mouseRay, out RaycastHit hit, Mathf.Infinity, layerMask))
     {
       Vector2Int gridPosition = PositionToGrid(hit.point);
-      cursor.transform.position = transform.TransformPoint(GridToPosition(gridPosition) + Vector3.back * 0.1F);
-      cursor.nodeName.text = tiles.ContainsKey(gridPosition) ? NodeDictionary.INSTANCE.nodeReference[tiles[gridPosition].GetType()].name : "";
-      cursor.background.gameObject.SetActive(tiles.ContainsKey(gridPosition));
-      if (Mouse.current.leftButton.wasPressedThisFrame && tiles.ContainsKey(gridPosition))
+      bool hasNode = tiles.ContainsKey(gridPosition);
+      cursor.transform.localPosition = GridToPosition(gridPosition) + Vector3.back * 0.1F;
+      cursor.nodeName.text = hasNode ? NodeDictionary.INSTANCE.nodeReference[tiles[gridPosition].GetType()].name : "";
+      cursor.background.gameObject.SetActive(hasNode);
+      if (hasNode)
+      {
         tiles[gridPosition].OnSelectedInGrid();
-      if (Mouse.current.rightButton.wasPressedThisFrame && !tiles.ContainsKey(gridPosition))
+        foreach (Node input in tiles[gridPosition].inputs)
+        {
+          
+        }
+      }
+      if (Mouse.current.rightButton.wasPressedThisFrame && !hasNode)
         NodeSelector.INSTANCE.Show();
-      else if (Keyboard.current.deleteKey.wasPressedThisFrame && tiles.ContainsKey(gridPosition))
+      else if (Keyboard.current.deleteKey.wasPressedThisFrame && hasNode)
         tiles.Remove(gridPosition);
     }
   }
@@ -65,6 +74,11 @@ public class SpellcraftingGrid : MonoBehaviour
     verts = new List<Vector3>();
     tris = new List<int>();
     uvs = new List<Vector2>();
+    foreach (TextMeshPro nodeIconString in nodeIconStrings)
+    {
+      Destroy(nodeIconString.gameObject);
+    }
+    nodeIconStrings.Clear();
 
     foreach (KeyValuePair<Vector2Int, Node> tile in tiles)
     {
@@ -116,6 +130,14 @@ public class SpellcraftingGrid : MonoBehaviour
       new Vector2(rect.xMin, rect.yMin + margin),
       new Vector2(rect.xMin, rect.yMax - margin) 
     });
+    string nodeIconString = _node.Value.GetIconString();
+    if (nodeIconString != "")
+    {
+      TextMeshPro thisNodeIconString = Instantiate(nodeIconStringPrefab, Vector3.zero, transform.rotation, transform);
+      thisNodeIconString.transform.localPosition = position + Vector3.back * 0.1F;
+      thisNodeIconString.text = nodeIconString;
+      nodeIconStrings.Add(thisNodeIconString);
+    }
   }
 
   public Vector3 GridToPosition(Vector2Int _gridPos)
@@ -156,11 +178,11 @@ public class SpellcraftingGrid : MonoBehaviour
       List<Vector2Int> neighbours = new List<Vector2Int>
       {
         nodePair.Key + Vector2Int.up,
+        nodePair.Key + Vector2Int.left,
         nodePair.Key + Vector2Int.one,
-        nodePair.Key + Vector2Int.right,
         nodePair.Key + Vector2Int.down,
+        nodePair.Key + Vector2Int.right,
         nodePair.Key - Vector2Int.one,
-        nodePair.Key + Vector2Int.left
       };
       foreach (NodeDictionary.NodeInputDesc desc in nodeType.inputs)
       {
@@ -184,5 +206,14 @@ public class SpellcraftingGrid : MonoBehaviour
     mainCamera.enabled = gameObject.activeSelf;
     gameObject.SetActive(!gameObject.activeSelf);
     spellcraftingCamera.enabled = gameObject.activeSelf;
+  }
+
+  public Vector2Int GetNodePosition(Node _node)
+  {
+    foreach (KeyValuePair<Vector2Int, Node> nodePair in tiles)
+    {
+      if (nodePair.Value == _node) return nodePair.Key;
+    }
+    return Vector2Int.zero;
   }
 }

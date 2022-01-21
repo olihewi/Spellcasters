@@ -49,6 +49,8 @@ public class NodeDictionary : ScriptableObject
   public Dictionary<Type, Rect> textureReference;
   public static NodeDictionary INSTANCE;
 
+  public Color numberColor, vectorColor, physicsColor;
+
   private void OnValidate()
   {
     INSTANCE = this;
@@ -90,5 +92,23 @@ public class NodeDictionary : ScriptableObject
       textureReference.Add(nodeTypePair.Key, rects[i]);
       i++;
     }
+  }
+
+  public Color GetTypeColor(NodeInputType _type)
+  {
+    switch (_type)
+    {
+      case NodeInputType.NONE:
+        return Color.white;
+      case NodeInputType.ANY:
+        return Color.white;
+      case NodeInputType.NUMBER:
+        return numberColor;
+      case NodeInputType.VECTOR:
+        return vectorColor;
+      case NodeInputType.PHYSICS:
+        return physicsColor;
+    }
+    return Color.white;
   }
 }

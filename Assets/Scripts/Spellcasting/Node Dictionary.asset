@@ -49,9 +49,7 @@ MonoBehaviour:
       description: The caster of the spell.
       icon: {fileID: 2800000, guid: a816759bcd6548546a762ce64b634f09, type: 3}
       className: Selectors.SelfSelectorNode
-      inputs:
-      - type: 0
-        name: 
+      inputs: []
       outputType: 4
   - name: Logic
     description: Branching, Loops and Sequencing
@@ -168,3 +166,6 @@ MonoBehaviour:
         name: 
       outputType: 0
   packedTextures: {fileID: 0}
+  numberColor: {r: 0, g: 0.59607846, b: 0.98823535, a: 0}
+  vectorColor: {r: 0.64705884, g: 0.9803922, b: 0, a: 0}
+  physicsColor: {r: 0.54901963, g: 0, b: 0.9921569, a: 0}

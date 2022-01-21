@@ -30,6 +30,8 @@ public class SpellcraftingGrid : MonoBehaviour
   public Camera spellcraftingCamera;
   public LayerMask layerMask;
   public TextMeshPro nodeIconStringPrefab;
+
+  public MeshFilter inputMesh;
   private void Awake()
   {
     INSTANCE = this;
@@ -51,15 +53,14 @@ public class SpellcraftingGrid : MonoBehaviour
       if (hasNode)
       {
         tiles[gridPosition].OnSelectedInGrid();
-        foreach (Node input in tiles[gridPosition].inputs)
-        {
-          
-        }
       }
       if (Mouse.current.rightButton.wasPressedThisFrame && !hasNode)
         NodeSelector.INSTANCE.Show();
       else if (Keyboard.current.deleteKey.wasPressedThisFrame && hasNode)
+      {
         tiles.Remove(gridPosition);
+        Compile();
+      }
     }
   }
 
@@ -140,6 +141,53 @@ public class SpellcraftingGrid : MonoBehaviour
     }
   }
 
+  public void CreateInputMesh()
+  {
+    List<Vector3> v = new List<Vector3>();
+    List<int> t = new List<int>();
+    List<Color> c = new List<Color>();
+    foreach (KeyValuePair<Vector2Int,Node> nodePair in tiles)
+    {
+      Node node = nodePair.Value;
+      foreach (Node input in nodePair.Value.inputs)
+      {
+        Vector3 pos = GridToPosition(GetNodePosition(input));
+        Vector3 difference = pos - GridToPosition(nodePair.Key);
+        pos -= difference / 2.0F;
+        int offset = v.Count;
+        float angleBetween = Mathf.Atan2(difference.y, -difference.x);
+        Debug.Log(angleBetween);
+        v.AddRange(new[]
+        {
+          pos + RotatePoint(new Vector3(-0.075F, 0.1F, 0.0F), angleBetween),
+          pos + RotatePoint(new Vector3(0.1F, 0.0F, 0.0F), angleBetween),
+          pos + RotatePoint(new Vector3(-0.075F, -0.1F, 0.0F), angleBetween)
+        });
+        Color col = NodeDictionary.INSTANCE.GetTypeColor(NodeDictionary.INSTANCE.nodeReference[input.GetType()].outputType);
+        c.AddRange(new[]
+        {
+          col,col,col
+        });
+        t.AddRange(new[]
+        {
+          offset, offset + 1, offset + 2
+        });
+      }
+    }
+    Mesh thisMesh = new Mesh();
+    thisMesh.vertices = v.ToArray();
+    thisMesh.triangles = t.ToArray();
+    thisMesh.colors = c.ToArray();
+    inputMesh.mesh = thisMesh;
+  }
+
+  private Vector3 RotatePoint(Vector3 v, float angle)
+  {
+    float sin = Mathf.Sin(angle);
+    float cos = Mathf.Cos(angle);
+    return new Vector3(cos * v.x - sin * v.y, sin * v.x + cos * v.y, 0.0F);
+  }
+
   public Vector3 GridToPosition(Vector2Int _gridPos)
   {
     Vector2 gridDims = new Vector3(
@@ -199,6 +247,7 @@ public class SpellcraftingGrid : MonoBehaviour
         }
       }
     }
+    CreateInputMesh();
   }
 
   public void ToggleEnabled()

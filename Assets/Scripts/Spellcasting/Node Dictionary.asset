@@ -29,16 +29,28 @@ MonoBehaviour:
       className: Input.RightStickInputNode
       inputs: []
       outputType: 3
-    - name: Button Pressed
-      description: Outputs 1 when a button has been pressed.
-      icon: {fileID: 2800000, guid: 8dc1b8d8ff2ef714692a7c63fc308eca, type: 3}
-      className: Input.ButtonPressedNode
-      inputs: []
-      outputType: 2
     - name: Constant Number
       description: Type a number to input.
       icon: {fileID: 2800000, guid: a731b65a366ff684da2e575fba1f4181, type: 3}
       className: Constants.ConstantNumberNode
+      inputs: []
+      outputType: 2
+    - name: Button Pressed
+      description: Outputs 1 when a given button is pressed.
+      icon: {fileID: 2800000, guid: 8dc1b8d8ff2ef714692a7c63fc308eca, type: 3}
+      className: Input.ButtonPressedNode
+      inputs: []
+      outputType: 2
+    - name: Button Released
+      description: Outputs 1 when a given button is released.
+      icon: {fileID: 2800000, guid: 8dc1b8d8ff2ef714692a7c63fc308eca, type: 3}
+      className: Input.ButtonReleasedNode
+      inputs: []
+      outputType: 2
+    - name: Button Held
+      description: Outputs 1 when a given button is held.
+      icon: {fileID: 2800000, guid: 8dc1b8d8ff2ef714692a7c63fc308eca, type: 3}
+      className: Input.ButtonHeldNode
       inputs: []
       outputType: 2
   - name: Selectors

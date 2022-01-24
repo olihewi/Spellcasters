@@ -6,14 +6,14 @@ using UnityEngine.InputSystem.Controls;
 
 namespace Spellcasting.Nodes.Input
 {
-  public class ButtonPressedNode : Node
+  public class ButtonHeldNode : Node
   {
     public KeyControl keyboardKey;
     public ButtonControl gamepadButton;
 
     public override void Tick()
     {
-      value = (keyboardKey != null && keyboardKey.wasPressedThisFrame) | (gamepadButton != null && gamepadButton.wasPressedThisFrame) ? 1.0F : 0.0F;
+      value = (keyboardKey != null && keyboardKey.isPressed) | (gamepadButton != null && gamepadButton.isPressed) ? 1.0F : 0.0F;
     }
     public override void OnSelectedInGrid()
     {

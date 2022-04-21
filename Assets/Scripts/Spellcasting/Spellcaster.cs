@@ -18,7 +18,7 @@ namespace Spellcasting
     }
     private void Start()
     {
-      StaticInput.input.Gameplay.OpenProgramming.performed += _ => ToggleCasting();
+      //StaticInput.input.Gameplay.OpenProgramming.performed += _ => ToggleCasting();
     }
 
     private void Update()

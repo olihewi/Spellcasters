@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa41d1043910f10468c7f2bb0e327c43, type: 3}
+  m_Name: Construct Vector
+  m_EditorClassIdentifier: 
+  parent: {fileID: 11400000, guid: bf804f2ec99c7d84987316bb9ce793fa, type: 2}
+  icon: {fileID: 2800000, guid: cb1065e7377e8a44bb7786bf7f43df2e, type: 3}
+  description: Outputs a 3D vector, constructed from XYZ inputs.
+  inputs:
+  - types: 1
+    label: X
+  - types: 1
+    label: Y
+  - types: 1
+    label: Z
+  output:
+    types: 2
+    label: 
+  className: Spellcasting.Nodes.Math.Vector.ConstructVectorNode

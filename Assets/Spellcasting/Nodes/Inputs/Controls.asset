@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c03ad332dfeef546afe485a22596e8f, type: 3}
+  m_Name: Controls
+  m_EditorClassIdentifier: 
+  parent: {fileID: 11400000, guid: 95ac836feeac55a47b647e3bcaa4082a, type: 2}
+  icon: {fileID: 2800000, guid: 534eddf87b168284489a46f7fc02ced6, type: 3}
+  description: Inputs from the keyboard, mouse or controller.
+  elements:
+  - {fileID: 11400000, guid: 7dbc169250007604f9c452e0534c2fc2, type: 2}
+  - {fileID: 11400000, guid: 93bab1f3568997f4588eda6cccbaece0, type: 2}
+  - {fileID: 11400000, guid: 1f42fe6904c7e304ebf5db466efac827, type: 2}
+  - {fileID: 11400000, guid: 4a757c84844b36842be0854aa4803679, type: 2}
+  - {fileID: 11400000, guid: 7d01a31996d2ba54796864bffcb6aceb, type: 2}

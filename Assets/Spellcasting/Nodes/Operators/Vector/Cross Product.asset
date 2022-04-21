@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa41d1043910f10468c7f2bb0e327c43, type: 3}
+  m_Name: Cross Product
+  m_EditorClassIdentifier: 
+  parent: {fileID: 11400000, guid: bf804f2ec99c7d84987316bb9ce793fa, type: 2}
+  icon: {fileID: 2800000, guid: 112ae3e70eb920b469a6a5c915c8a143, type: 3}
+  description: Outputs the cross product of two vectors.
+  inputs:
+  - types: 2
+    label: 
+  - types: 2
+    label: 
+  output:
+    types: 2
+    label: Cross Product
+  className: Spellcasting.Nodes.Math.Vector.VectorCrossProductNode

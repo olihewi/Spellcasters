@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c03ad332dfeef546afe485a22596e8f, type: 3}
+  m_Name: Number
+  m_EditorClassIdentifier: 
+  parent: {fileID: 11400000, guid: 4695288223a7b7244b6030b89e3ccd74, type: 2}
+  icon: {fileID: 2800000, guid: cfe92df0d76be554f83e39bc1cdf0487, type: 3}
+  description: Mathematical operations for numbers.
+  elements:
+  - {fileID: 11400000, guid: 22bad62051f687e4d8b4987a65e418d5, type: 2}
+  - {fileID: 11400000, guid: dc4d665476187164ca691b82ee620331, type: 2}
+  - {fileID: 11400000, guid: 0838ed91f32f460468abdbda44c8a286, type: 2}
+  - {fileID: 11400000, guid: 7ffc8726835eecd4da351415061a4ce9, type: 2}
+  - {fileID: 11400000, guid: 265b2b78681aa234ea3d88a4fe895952, type: 2}
+  - {fileID: 11400000, guid: 18070f607a686614f8e3e7a96ff24570, type: 2}

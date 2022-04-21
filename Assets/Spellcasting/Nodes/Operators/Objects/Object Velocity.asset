@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa41d1043910f10468c7f2bb0e327c43, type: 3}
+  m_Name: Object Velocity
+  m_EditorClassIdentifier: 
+  parent: {fileID: 11400000, guid: fce903504a72bf345b5a74a0f960295e, type: 2}
+  icon: {fileID: 0}
+  description: Outputs the current velocity vector of an object.
+  inputs:
+  - types: 4
+    label: 
+  output:
+    types: 2
+    label: Velocity
+  className: Spellcasting.Nodes.Math.Physics.GetVelocityNode

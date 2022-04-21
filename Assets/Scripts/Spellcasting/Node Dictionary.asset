@@ -35,6 +35,12 @@ MonoBehaviour:
       className: Input.ButtonPressedNode
       inputs: []
       outputType: 2
+    - name: Button Held
+      description: Outputs 1 when a button is being pressed
+      icon: {fileID: 2800000, guid: 8dc1b8d8ff2ef714692a7c63fc308eca, type: 3}
+      className: Input.ButtonHeldNode
+      inputs: []
+      outputType: 2
     - name: Constant Number
       description: Type a number to input.
       icon: {fileID: 2800000, guid: a731b65a366ff684da2e575fba1f4181, type: 3}

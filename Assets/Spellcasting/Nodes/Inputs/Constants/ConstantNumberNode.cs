@@ -38,6 +38,8 @@ namespace Spellcasting.Nodes.Constants
         stringInput += "9";
       if (kb.periodKey.wasPressedThisFrame || kb.numpadPeriodKey.wasPressedThisFrame)
         stringInput += ".";
+      if (kb.minusKey.wasPressedThisFrame || kb.numpadMinusKey.wasPressedThisFrame)
+        stringInput += "-";
       if (kb.backspaceKey.wasPressedThisFrame && stringInput.Length > 0)
         stringInput = stringInput.Substring(0, stringInput.Length - 1);
       if (float.TryParse(stringInput, out float result))

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class RadialMenu : MonoBehaviour
 {
+  public static RadialMenu Instance;
   public RadialCategory currentCategory;
   
   [Header("Controls")]
@@ -35,6 +36,7 @@ public class RadialMenu : MonoBehaviour
   private void Awake()
   {
     SetCategory(currentCategory);
+    Instance = this;
   }
 
   private void OnEnable()

@@ -16,16 +16,7 @@ public class RadialNodeEditor : Editor
 
   private void OnEnable()
   {
-    RegisterType();
-  }
-
-  private void RegisterType()
-  {
-    foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
-    {
-      node.type = a.GetType(node.className);
-      if (node.type != null) break;
-    }
+    node.RegisterType();
   }
 
   public override void OnInspectorGUI()
@@ -36,7 +27,7 @@ public class RadialNodeEditor : Editor
     if (newClassName != node.className)
     {
       node.className = newClassName;
-      RegisterType();
+      node.RegisterType();
     }
     if (node.type == null)
      EditorGUILayout.HelpBox("This type does not exist!", MessageType.Error);

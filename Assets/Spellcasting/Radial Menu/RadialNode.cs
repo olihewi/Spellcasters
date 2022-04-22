@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 
@@ -64,5 +65,15 @@ public class RadialNode : RadialElement
   public override void GetOutputLabel(TextMeshProUGUI _label)
   {
     _label.text = InputInfoToString();
+  }
+
+  public bool RegisterType()
+  {
+    foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
+    {
+      type = a.GetType(className);
+      if (type != null) return true;
+    }
+    return false;
   }
 }

@@ -46,17 +46,20 @@ public class RadialCategory : RadialElement
     }
     elements = oldRadialElements.ToArray();
     
-#endif
+    #endif
     foreach (RadialElement element in elements)
     {
       if (element == null) continue;
       element.parent = this;
     }
+    OnRegistered();
   }
 
   public override void OnSelect(RadialMenu _menu, SpellcraftingGrid _grid)
   {
+    _menu.currentCategory.OnUnloaded();
     _menu.SetCategory(this);
+    OnLoaded();
   }
 
   public override void GetTypeLabel(TextMeshProUGUI _label)
@@ -69,4 +72,7 @@ public class RadialCategory : RadialElement
   {
     _label.text = "";
   }
+  public virtual void OnLoaded() {}
+  public virtual void OnUnloaded() {}
+  public virtual void OnRegistered() {}
 }

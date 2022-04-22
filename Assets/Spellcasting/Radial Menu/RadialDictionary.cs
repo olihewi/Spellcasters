@@ -12,7 +12,7 @@ public class RadialDictionary : RadialCategory
   {
     nodeDictionary = new Dictionary<Type, RadialNode>();
     AddCategory(this);
-    Debug.Log(nodeDictionary.Count + " nodes registered!");
+    Debug.Log($"{nodeDictionary.Count} nodes registered to the RadialDictionary.");
   }
 
   private void AddCategory(RadialCategory _category)

@@ -49,23 +49,29 @@ public class RadialSearch : RadialCategory
 
   private void Search()
   {
-    List<RadialElement> display = new List<RadialElement>();
-    foreach (string split in query.ToLower().Split(' '))
+    List<RadialNode> display = new List<RadialNode>();
+
+    string[] split = query.ToLower().Split(' ');
+    foreach (KeyValuePair<Type, RadialNode> nodePair in RadialDictionary.nodeDictionary)
     {
-      foreach (KeyValuePair<Type, RadialNode> nodePair in RadialDictionary.nodeDictionary)
+      bool conditionsMet = true;
+      string keywords = nodePair.Value.searchTags.ToLower();
+      foreach (string word in split)
       {
-        foreach (string keyword in nodePair.Value.searchTags.ToLower().Split(','))
-        {
-          if (keyword.Contains(split))
-          {
-            display.Add(nodePair.Value);
-            break;
-          }
-        }
+        if (!keywords.Contains(word)) conditionsMet = false;
+        else if (word.Length > 0) keywords = keywords.Replace(word, "");
       }
+      if (conditionsMet) display.Add(nodePair.Value);
     }
+
+
+    display.Sort((a, b) => a.useCount.CompareTo(b.useCount));
     if (display.Count > maxDisplayed) display.RemoveRange(maxDisplayed, display.Count - maxDisplayed);
-    elements = display.ToArray();
+    elements = new RadialElement[display.Count > maxDisplayed ? maxDisplayed : display.Count];
+    for (int j = 0; j < elements.Length; j++)
+    {
+      elements[j] = display[j];
+    }
     RadialMenu.Instance.SetCategory(this);
   }
 

@@ -32,10 +32,11 @@ public class RadialNode : RadialElement
   public NodeOutputInfo output;
   public string searchTags = "";
   [HideInInspector] public string className = "Spellcasting.Nodes.";
+  [NonSerialized] public int useCount = 0;
   
   public override void OnSelect(RadialMenu _menu, SpellcraftingGrid _grid)
   {
-    throw new System.NotImplementedException();
+    useCount++;
   }
 
   public string OutputInfoToString(NodeOutputInfo _type)

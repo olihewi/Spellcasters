@@ -19,7 +19,7 @@ public class Spellcrafting : MonoBehaviour
 
   [Header("UI Elements")] 
   [SerializeField] private RectTransform rectTransform;
-  [SerializeField] private Image cursor;
+  [SerializeField] private SpellcraftingCursor cursor;
   [SerializeField] private RawImage scroll;
   [SerializeField] private RectTransform scrollParent;
   [SerializeField] private GameObject crosshair;
@@ -110,12 +110,19 @@ public class Spellcrafting : MonoBehaviour
       alternatingRot = !alternatingRot;
       timeLastSelected = Time.time;
     }
-    if (Mouse.current != null && Mouse.current.delta.ReadValue().sqrMagnitude > 0.1F &&
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, Camera.main.WorldToScreenPoint(Mouse.current.position.ReadValue()), Camera.main, out Vector2 localPoint))
+    if (Mouse.current != null && Mouse.current.delta.ReadValue().sqrMagnitude > 0.1F)
     {
-      cursorPos = WorldToHex(localPoint, hexSize);
+      Vector2 mousePos = Mouse.current.position.ReadValue() - new Vector2(Screen.width / 2.0F, Screen.height / 2.0F);
+      cursorPos = WorldToHex(mousePos, hexSize);
     }
     cursor.rectTransform.localPosition = HexToWorld(cursorPos, hexSize);
+    
+    if (spellcaster.nodes.ContainsKey(cursorPos))
+    {
+      cursor.label.text = RadialDictionary.nodeDictionary[spellcaster.nodes[cursorPos].GetType()].name;
+      cursor.label.transform.parent.gameObject.SetActive(true);
+    }
+    else cursor.label.transform.parent.gameObject.SetActive(false);
     //Scroll();
     //Zoom();
   }

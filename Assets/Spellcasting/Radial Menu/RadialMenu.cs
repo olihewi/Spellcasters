@@ -28,6 +28,7 @@ public class RadialMenu : MonoBehaviour
   [SerializeField] private float radius;
 
   private RadialElementSelector currentSelection;
+  private float openTime = 0.0F;
 
   private void Awake()
   {
@@ -41,11 +42,12 @@ public class RadialMenu : MonoBehaviour
     if (gameObject.activeSelf) return;
     SetCategory(RadialDictionary.Instance);
     gameObject.SetActive(true);
+    openTime = 0.0F;
   }
 
   public void Close()
   {
-    gameObject.SetActive(false);
+    if (openTime > 0.1F) gameObject.SetActive(false);
   }
 
   public void SetCategory(RadialCategory _category)
@@ -91,7 +93,7 @@ public class RadialMenu : MonoBehaviour
   private Vector2 selectedDir = Vector2.zero;
   private void Update()
   {
-    if (Gamepad.current != null)
+    if (Gamepad.current != null && Gamepad.current.leftStick.ReadValue().magnitude > 0.25F)
       selectedDir = Gamepad.current.leftStick.ReadValue();
     if (Mouse.current != null && Mouse.current.delta.ReadValue().magnitude > 0.25F)
       selectedDir = (Mouse.current.position.ReadValue() - new Vector2(Screen.width, Screen.height) / 2.0F) / 100.0F;
@@ -116,5 +118,7 @@ public class RadialMenu : MonoBehaviour
     Vector3 hoverSegmentDir = Vector3.RotateTowards(currentSelection.transform.localPosition, elements[(selection + elements.Count - 1) % elements.Count].transform.localPosition,
       Vector2.Angle(currentSelection.transform.localPosition, elements[(selection + elements.Count - 1) % elements.Count].transform.localPosition) * Mathf.Deg2Rad / 2.0F, 0.0F);
     hoverSegment.transform.rotation = Quaternion.Slerp(hoverSegment.transform.rotation, Quaternion.LookRotation(Vector3.forward, hoverSegmentDir), 10 * Time.deltaTime);
+
+    openTime += Time.deltaTime;
   }
 }

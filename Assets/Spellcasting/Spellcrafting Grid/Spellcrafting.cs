@@ -51,12 +51,12 @@ public class Spellcrafting : MonoBehaviour
 
   public void BindControls()
   {
+    openRadialMenuInput.started += OnRadialInput;
+    openRadialMenuInput.Enable();
     selectInput.started += OnSelectInput;
     selectInput.Enable();
     backInput.started += OnBackInput;
     backInput.Enable();
-    openRadialMenuInput.started += OnRadialInput;
-    openRadialMenuInput.Enable();
     cursorMovementInput.Enable();
   }
 
@@ -82,7 +82,12 @@ public class Spellcrafting : MonoBehaviour
 
   private void OnRadialInput(InputAction.CallbackContext _context)
   {
-    RadialMenu.Instance.Open();
+    if (spellcaster.nodes.ContainsKey(cursorPos))
+    {
+      spellcaster.nodes.Remove(cursorPos);
+      UpdateGrid();
+    }
+    else RadialMenu.Instance.Open();
   }
 
   private void Update()
@@ -118,7 +123,7 @@ public class Spellcrafting : MonoBehaviour
   {
     foreach (KeyValuePair<Vector2Int, NodeGridUI> iconPair in nodeIcons)
     {
-      Destroy(iconPair.Value);
+      Destroy(iconPair.Value.gameObject);
     }
     nodeIcons = new Dictionary<Vector2Int, NodeGridUI>(spellcaster.nodes.Count);
     foreach (KeyValuePair<Vector2Int, Node> nodePair in spellcaster.nodes)

@@ -8,7 +8,8 @@ namespace Spellcasting.Nodes
   {
     public Spellcaster owner;
     public System.Object output;
-    public List<Node> inputs = new List<Node>();
+    public Node[] inputs = new Node[6];
+    public Vector2Int gridPos;
     public virtual void Tick() { }
     public virtual void OnSelectedInGrid() { }
     public virtual string GetIconString() { return ""; }

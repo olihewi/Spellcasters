@@ -13,7 +13,7 @@ namespace Spellcasting.Nodes.Actions
       if (!(inputs[1].output is Vector3 v)) return;
       if (rb.CompareTag("Player"))
       {
-        Transform camera = rb.GetComponent<Player>().cameraTransform.transform;
+        Transform camera = owner.GetComponent<Player>().cameraRef.transform;
         rb.transform.Rotate(Vector3.up,v.x * Time.deltaTime, Space.Self);
         camera.Rotate(Vector3.left, v.z * Time.deltaTime, Space.Self);
       }

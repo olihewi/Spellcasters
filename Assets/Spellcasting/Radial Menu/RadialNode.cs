@@ -28,10 +28,10 @@ public struct NodeOutputInfo
     NodeOutputTypes input = _input.types;
     NodeOutputTypes output = _output.types;
     if (input.HasFlag(NodeOutputTypes.Array) != output.HasFlag(NodeOutputTypes.Array)) return false;
-    if (input.HasFlag(NodeOutputTypes.Number) == output.HasFlag(NodeOutputTypes.Number)) return true;
-    if (input.HasFlag(NodeOutputTypes.Vector) == output.HasFlag(NodeOutputTypes.Vector)) return true;
-    if (input.HasFlag(NodeOutputTypes.Object) == output.HasFlag(NodeOutputTypes.Object)) return true;
-    return input.HasFlag(NodeOutputTypes.Boolean) == output.HasFlag(NodeOutputTypes.Boolean);
+    if (input.HasFlag(NodeOutputTypes.Number) && output.HasFlag(NodeOutputTypes.Number)) return true;
+    if (input.HasFlag(NodeOutputTypes.Vector) && output.HasFlag(NodeOutputTypes.Vector)) return true;
+    if (input.HasFlag(NodeOutputTypes.Object) && output.HasFlag(NodeOutputTypes.Object)) return true;
+    return input.HasFlag(NodeOutputTypes.Boolean) && output.HasFlag(NodeOutputTypes.Boolean);
   }
 }
 

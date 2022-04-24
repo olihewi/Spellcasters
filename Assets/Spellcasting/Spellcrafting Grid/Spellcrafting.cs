@@ -11,7 +11,7 @@ public class Spellcrafting : MonoBehaviour
 {
   public static Spellcrafting Instance;
   public Spellcaster spellcaster;
-  [Header("Controls")]
+  [Header("Controls")] 
   [SerializeField] private InputAction selectInput;
   [SerializeField] private InputAction backInput;
   [SerializeField] private InputAction openRadialMenuInput;
@@ -22,6 +22,7 @@ public class Spellcrafting : MonoBehaviour
   [SerializeField] private Image cursor;
   [SerializeField] private RawImage scroll;
   [SerializeField] private RectTransform scrollParent;
+  [SerializeField] private GameObject crosshair;
   [Header("Prefabs")]
   [SerializeField] private NodeGridUI nodeGridPrefab;
 
@@ -39,6 +40,7 @@ public class Spellcrafting : MonoBehaviour
   private void Awake()
   {
     Instance = this;
+    ToggleActive();
   }
   private void OnEnable()
   {
@@ -71,6 +73,16 @@ public class Spellcrafting : MonoBehaviour
     cursorMovementInput.Disable();
   }
 
+  public void ToggleActive()
+  {
+    gameObject.SetActive(!gameObject.activeSelf);
+    enabled = gameObject.activeSelf;
+    spellcaster.executing = !gameObject.activeSelf;
+    Player.Instance.spellcaster.executing = !gameObject.activeSelf;
+    RadialMenu.Instance.Close();
+    crosshair.SetActive(!gameObject.activeSelf);
+    if (!gameObject.activeSelf) spellcaster.Compile();
+  }
   private void OnSelectInput(InputAction.CallbackContext _context)
   {
     RadialMenu.Instance.Select();
@@ -82,12 +94,8 @@ public class Spellcrafting : MonoBehaviour
 
   private void OnRadialInput(InputAction.CallbackContext _context)
   {
-    if (spellcaster.nodes.ContainsKey(cursorPos))
-    {
-      spellcaster.nodes.Remove(cursorPos);
-      UpdateGrid();
-    }
-    else RadialMenu.Instance.Open();
+    if (!spellcaster.RemoveNode(cursorPos)) RadialMenu.Instance.Open();
+    UpdateGrid();
   }
 
   private void Update()
@@ -114,9 +122,7 @@ public class Spellcrafting : MonoBehaviour
 
   public void PlaceNodeAtCursor(Type _type)
   {
-    Node thisNode = (Node) Activator.CreateInstance(_type);
-    spellcaster.nodes.Add(cursorPos, thisNode);
-    UpdateGrid();
+    if (spellcaster.AddNode(cursorPos, _type)) UpdateGrid();
   }
 
   private void UpdateGrid()
@@ -130,8 +136,8 @@ public class Spellcrafting : MonoBehaviour
     {
       RadialNode metadata = RadialDictionary.nodeDictionary[nodePair.Value.GetType()];
       NodeGridUI icon = Instantiate(nodeGridPrefab, scrollParent);
-      icon.SetNode(metadata);
       icon.rectTransform.localPosition = HexToWorld(nodePair.Key, icon.rectTransform.rect.height / 2.0F);
+      icon.SetNode(nodePair.Value,metadata);
       nodeIcons.Add(nodePair.Key, icon);
     }
   }

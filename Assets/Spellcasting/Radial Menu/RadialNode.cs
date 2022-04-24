@@ -22,6 +22,17 @@ public struct NodeOutputInfo
 {
   public NodeOutputTypes types;
   public string label;
+
+  public static bool Compatible(NodeOutputInfo _input, NodeOutputInfo _output)
+  {
+    NodeOutputTypes input = _input.types;
+    NodeOutputTypes output = _output.types;
+    if (input.HasFlag(NodeOutputTypes.Array) != output.HasFlag(NodeOutputTypes.Array)) return false;
+    if (input.HasFlag(NodeOutputTypes.Number) == output.HasFlag(NodeOutputTypes.Number)) return true;
+    if (input.HasFlag(NodeOutputTypes.Vector) == output.HasFlag(NodeOutputTypes.Vector)) return true;
+    if (input.HasFlag(NodeOutputTypes.Object) == output.HasFlag(NodeOutputTypes.Object)) return true;
+    return input.HasFlag(NodeOutputTypes.Boolean) == output.HasFlag(NodeOutputTypes.Boolean);
+  }
 }
 
 [CreateAssetMenu(menuName = "Radial Menu/Node")]
@@ -34,8 +45,11 @@ public class RadialNode : RadialElement
   [HideInInspector] public string className = "Spellcasting.Nodes.";
   [NonSerialized] public int useCount = 0;
   
-  public override void OnSelect(RadialMenu _menu, SpellcraftingGrid _grid)
+  public override void OnSelect()
   {
+    if (type == null) return;
+    Spellcrafting.Instance.PlaceNodeAtCursor(type);
+    RadialMenu.Instance.Close();
     useCount++;
   }
 

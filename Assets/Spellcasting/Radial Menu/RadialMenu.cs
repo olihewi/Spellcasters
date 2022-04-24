@@ -10,10 +10,6 @@ public class RadialMenu : MonoBehaviour
 {
   public static RadialMenu Instance;
   public RadialCategory currentCategory;
-  
-  [Header("Controls")]
-  [SerializeField] private InputAction selectInput;
-  [SerializeField] private InputAction backInput;
 
   [Header("Prefabs")] 
   [SerializeField] private RadialElementSelector radalElementPrefab;
@@ -37,29 +33,28 @@ public class RadialMenu : MonoBehaviour
   {
     SetCategory(currentCategory);
     Instance = this;
+    gameObject.SetActive(false);
   }
 
-  private void OnEnable()
+  public void Open()
   {
-    selectInput.Enable();
-    selectInput.performed -= Select;
-    selectInput.performed += Select;
-    backInput.Enable();
-    backInput.performed -= Back;
-    backInput.performed += Back;
+    if (gameObject.activeSelf) return;
+    SetCategory(RadialDictionary.Instance);
+    gameObject.SetActive(true);
   }
 
-  private void OnDisable()
+  public void Close()
   {
-    selectInput.performed -= Select;
-    selectInput.Disable();
-    backInput.performed -= Back;
-    backInput.Disable();
+    gameObject.SetActive(false);
   }
 
   public void SetCategory(RadialCategory _category)
   {
-    if (_category == null) return;
+    if (_category == null)
+    {
+      Close();
+      return;
+    }
     foreach (RadialElementSelector element in elements)
     {
       Destroy(element.gameObject);
@@ -82,22 +77,23 @@ public class RadialMenu : MonoBehaviour
     hoverSegment.fillAmount = 1.0F / elements.Count;
   }
 
-  private void Select(InputAction.CallbackContext _ctx)
+  public void Select()
   {
+    if (!gameObject.activeSelf) return;
     if (currentSelection == null) return;
-    currentSelection.element.OnSelect(this, SpellcraftingGrid.INSTANCE);
+    currentSelection.element.OnSelect();
   }
-  private void Back(InputAction.CallbackContext _ctx)
+  public void Back()
   {
-    SetCategory(currentCategory.parent);
+    if (gameObject.activeSelf) SetCategory(currentCategory.parent);
   }
 
+  private Vector2 selectedDir = Vector2.zero;
   private void Update()
   {
-    Vector2 selectedDir = Vector2.zero;
     if (Gamepad.current != null)
-      Gamepad.current.leftStick.ReadValue();
-    if (selectedDir.magnitude < 0.1F && Mouse.current != null)
+      selectedDir = Gamepad.current.leftStick.ReadValue();
+    if (Mouse.current != null && Mouse.current.delta.ReadValue().magnitude > 0.25F)
       selectedDir = (Mouse.current.position.ReadValue() - new Vector2(Screen.width, Screen.height) / 2.0F) / 100.0F;
     bool pointing = selectedDir.magnitude != 0.0F;
     pointer.rotation = pointing ? Quaternion.LookRotation(Vector3.forward, selectedDir) : Quaternion.identity;

@@ -8,11 +8,12 @@ using UnityEngine;
 public class RadialDictionary : RadialCategory
 {
   public static Dictionary<Type, RadialNode> nodeDictionary = new Dictionary<Type, RadialNode>();
+  public static RadialDictionary Instance;
   public override void OnRegistered()
   {
+    Instance = this;
     nodeDictionary = new Dictionary<Type, RadialNode>();
     AddCategory(this);
-    Debug.Log($"{nodeDictionary.Count} nodes registered to the RadialDictionary.");
   }
 
   private void AddCategory(RadialCategory _category)

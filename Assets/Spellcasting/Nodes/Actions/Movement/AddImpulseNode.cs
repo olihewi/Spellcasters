@@ -6,7 +6,7 @@ namespace Spellcasting.Nodes.Actions
 {
   public class AddImpulseNode : Node
   {
-    public override void Execute()
+    public override void Tick()
     {
       if (inputs[2].output is bool b && !b) return;
       if (!(inputs[0].output is Rigidbody rb)) return;

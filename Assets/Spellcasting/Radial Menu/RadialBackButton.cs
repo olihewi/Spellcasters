@@ -6,9 +6,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Radial Menu/Back Button")]
 public class RadialBackButton : RadialElement
 {
-    public override void OnSelect(RadialMenu _menu, SpellcraftingGrid _grid)
+    public override void OnSelect()
     {
-        _menu.SetCategory(_menu.currentCategory.parent);
+        RadialMenu.Instance.SetCategory(RadialMenu.Instance.currentCategory.parent);
     }
 
     public override void GetTypeLabel(TextMeshProUGUI _label)

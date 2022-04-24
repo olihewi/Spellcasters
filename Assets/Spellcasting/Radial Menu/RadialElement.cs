@@ -9,7 +9,7 @@ public abstract class RadialElement : ScriptableObject
   public Texture2D icon;
   public string description;
 
-  public abstract void OnSelect(RadialMenu _menu, SpellcraftingGrid _grid);
+  public abstract void OnSelect();
   public abstract void GetTypeLabel(TextMeshProUGUI _label);
   public abstract void GetOutputLabel(TextMeshProUGUI _label);
 }

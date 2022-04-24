@@ -55,10 +55,10 @@ public class RadialCategory : RadialElement
     OnRegistered();
   }
 
-  public override void OnSelect(RadialMenu _menu, SpellcraftingGrid _grid)
+  public override void OnSelect()
   {
-    _menu.currentCategory.OnUnloaded();
-    _menu.SetCategory(this);
+    RadialMenu.Instance.currentCategory.OnUnloaded();
+    RadialMenu.Instance.SetCategory(this);
     OnLoaded();
   }
 

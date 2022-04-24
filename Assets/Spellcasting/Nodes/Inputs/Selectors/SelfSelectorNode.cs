@@ -6,7 +6,7 @@ namespace Spellcasting.Nodes.Selectors
     {
         public override void Tick()
         {
-            output = Spellcaster.instance.player;
+            output = owner;
         }
     }
 }

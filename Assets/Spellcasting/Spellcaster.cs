@@ -25,12 +25,13 @@ namespace Spellcasting
       currentMana = maxMana;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
+      if (Spellcrafting.Instance.gameObject.activeSelf) return;
       if (tickOrder == null) return;
       foreach (Node node in tickOrder)
       {
-        node.Tick();
+        if (node.compiled) node.Tick();
       }
     }
 
@@ -77,6 +78,7 @@ namespace Spellcasting
     // TODO: Add return value
     public void CompileInputs(KeyValuePair<Vector2Int, Node> _nodePair)
     {
+      _nodePair.Value.compiled = true;
       for (int i = 0; i < _nodePair.Value.metadata.inputs.Length; i++)
       {
         if (_nodePair.Value.inputs[i] != null)
@@ -97,6 +99,7 @@ namespace Spellcasting
             break;
           }
         }
+        if (_nodePair.Value.inputs[i] == null) _nodePair.Value.compiled = false;
       }
     }
 

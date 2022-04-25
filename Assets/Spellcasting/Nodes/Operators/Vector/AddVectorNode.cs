@@ -8,9 +8,9 @@ namespace Spellcasting.Nodes.Math.Vector
         public override void Tick()
         {
             Vector3 sum = Vector3.zero;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < inputs.Length; i++)
             {
-                if (inputs[i].output is Vector3 v) sum += v;
+                if (inputs[i] != null && inputs[i].output is Vector3 v) sum += v;
             }
             output = sum;
         }

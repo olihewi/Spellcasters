@@ -9,9 +9,9 @@ namespace Spellcasting.Nodes.Math.Vector
         {
             if (!(inputs[0].output is Vector3 v1)) return;
             Vector3 sum = v1;
-            for (int i = 1; i < 5; i++)
+            for (int i = 1; i < inputs.Length; i++)
             {
-                if (inputs[i].output is Vector3 v) sum -= v;
+                if (inputs[i] != null && inputs[i].output is Vector3 v) sum -= v;
             }
             output = sum;
         }

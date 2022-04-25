@@ -76,21 +76,20 @@ namespace Spellcasting
     // TODO: Add return value
     public void CompileInputs(KeyValuePair<Vector2Int, Node> _nodePair)
     {
-      RadialNode metadata = RadialDictionary.nodeDictionary[_nodePair.Value.GetType()];
-      for (int i = 0; i < metadata.inputs.Length; i++)
+      for (int i = 0; i < _nodePair.Value.metadata.inputs.Length; i++)
       {
         if (_nodePair.Value.inputs[i] != null)
         {
           if (!nodes.ContainsValue(_nodePair.Value.inputs[i])) _nodePair.Value.inputs[i] = null;
           else continue;
         }
-        NodeOutputInfo inputInfo = metadata.inputs[i];
+        NodeOutputInfo inputInfo = _nodePair.Value.metadata.inputs[i];
         foreach (Vector2Int direction in Node.NeighbourDirections)
         {
           Vector2Int tile = _nodePair.Key + direction;
           if (!nodes.ContainsKey(tile)) continue;
           Node neighbour = nodes[tile];
-          NodeOutputInfo outputInfo = RadialDictionary.nodeDictionary[neighbour.GetType()].output;
+          NodeOutputInfo outputInfo = neighbour.metadata.output;
           if (NodeOutputInfo.Compatible(inputInfo, outputInfo) && !neighbour.inputs.Contains(_nodePair.Value))
           {
             _nodePair.Value.inputs[i] = neighbour;

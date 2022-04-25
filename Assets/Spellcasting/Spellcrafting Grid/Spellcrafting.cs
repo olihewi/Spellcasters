@@ -119,7 +119,7 @@ public class Spellcrafting : MonoBehaviour
     
     if (spellcaster.nodes.ContainsKey(cursorPos))
     {
-      cursor.label.text = RadialDictionary.nodeDictionary[spellcaster.nodes[cursorPos].GetType()].name;
+      cursor.label.text = spellcaster.nodes[cursorPos].metadata.name;
       cursor.label.transform.parent.gameObject.SetActive(true);
     }
     else cursor.label.transform.parent.gameObject.SetActive(false);
@@ -129,7 +129,12 @@ public class Spellcrafting : MonoBehaviour
 
   public void PlaceNodeAtCursor(Type _type)
   {
-    if (spellcaster.AddNode(cursorPos, _type)) UpdateGrid();
+    if (spellcaster.AddNode(cursorPos, _type))
+    {
+      UpdateGrid();
+      spellcaster.nodes[cursorPos].OnSelectedInGrid();
+    }
+    
   }
 
   private void UpdateGrid()
@@ -141,10 +146,9 @@ public class Spellcrafting : MonoBehaviour
     nodeIcons = new Dictionary<Vector2Int, NodeGridUI>(spellcaster.nodes.Count);
     foreach (KeyValuePair<Vector2Int, Node> nodePair in spellcaster.nodes)
     {
-      RadialNode metadata = RadialDictionary.nodeDictionary[nodePair.Value.GetType()];
       NodeGridUI icon = Instantiate(nodeGridPrefab, scrollParent);
       icon.rectTransform.localPosition = HexToWorld(nodePair.Key, icon.rectTransform.rect.height / 2.0F);
-      icon.SetNode(nodePair.Value,metadata);
+      icon.SetNode(nodePair.Value, nodePair.Value.metadata);
       nodeIcons.Add(nodePair.Key, icon);
     }
   }

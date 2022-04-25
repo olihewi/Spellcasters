@@ -7,9 +7,9 @@ namespace Spellcasting.Nodes.Math.Number
     public override void Tick()
     {
       float sum = 0.0F;
-      for (int i = 0; i < 5; i++)
+      foreach (Node node in inputs)
       {
-        if (inputs[i].output is float f) sum += f;
+        if (node.output is float f) sum += f;
       }
       output = sum;
     }

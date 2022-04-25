@@ -4,28 +4,28 @@ using UnityEngine.InputSystem;
 
 namespace Spellcasting.Nodes.Input
 {
-  public class ButtonPressedNode : Node
+  public class ButtonReleasedNode : Node
   {
     public InputAction button;
-    private bool pressed = false;
+    private bool released = false;
 
-    public ButtonPressedNode()
+    public ButtonReleasedNode()
     {
       button = new InputAction(metadata.name, InputActionType.Button, "<Gamepad>/buttonSouth");
       button.AddBinding("<Keyboard>/space");
-      button.started += OnPressed;
+      button.canceled += OnReleased;
       button.Enable();
     }
-    ~ButtonPressedNode()
+
+    ~ButtonReleasedNode()
     {
-      button.started -= OnPressed;
+      button.canceled -= OnReleased;
       button.Disable();
     }
-    
     public override void Tick()
     {
-      output = pressed;
-      pressed = false;
+      output = released;
+      released = false;
     }
 
     public override void OnSelectedInGrid()
@@ -41,9 +41,9 @@ namespace Spellcasting.Nodes.Input
       Debug.Log($"Rebound {_ctx.action.name} to {_newBind}");
     }
 
-    private void OnPressed(InputAction.CallbackContext _ctx)
+    private void OnReleased(InputAction.CallbackContext _ctx)
     {
-      pressed = true;
+      released = true;
     }
   }
 }

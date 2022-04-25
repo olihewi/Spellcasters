@@ -10,6 +10,7 @@ namespace Spellcasting.Nodes
     public System.Object output;
     public Node[] inputs = new Node[6];
     public Vector2Int gridPos;
+    public RadialNode metadata => RadialDictionary.nodeDictionary[GetType()];
     public virtual void Tick() { }
     public virtual void OnSelectedInGrid() { }
     public virtual string GetIconString() { return ""; }

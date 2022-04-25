@@ -13,7 +13,6 @@ namespace Spellcasting.Nodes.Input
     {
       direction = new InputAction(metadata.name, InputActionType.Value, "<Gamepad>/leftStick");
       direction.expectedControlType = "Stick";
-      direction.AddBinding("<Keyboard>/space");
       direction.performed += OnPerformed;
       direction.canceled += OnPerformed;
       direction.Enable();
@@ -27,7 +26,7 @@ namespace Spellcasting.Nodes.Input
     }
     public override void Tick()
     {
-      output = value;
+      output = new Vector3(value.x,0.0F,value.y);
     }
 
     public override void OnSelectedInGrid()
@@ -41,6 +40,7 @@ namespace Spellcasting.Nodes.Input
     {
       _ctx.action.Enable();
       Debug.Log($"Rebound {_ctx.action.name} to {_newBind}");
+      direction.ChangeBinding(0).To(new InputBinding(_newBind));
     }
 
     private void OnPerformed(InputAction.CallbackContext _ctx)

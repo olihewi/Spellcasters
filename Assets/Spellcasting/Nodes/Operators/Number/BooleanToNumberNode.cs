@@ -7,7 +7,7 @@ namespace Spellcasting.Nodes.Math.Number
     public override void Tick()
     {
       if (!(inputs[0].output is bool b)) return;
-      output = b ? 1 : 0;
+      output = b ? 1.0F : 0.0F;
     }
   }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa41d1043910f10468c7f2bb0e327c43, type: 3}
   m_Name: Boolean to Number
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
+  parent: {fileID: 11400000, guid: 05f7d590b3492cd49b829a909eb81364, type: 2}
   icon: {fileID: 0}
   description: Outputs 1 if true, and 0 if false.
   inputs:
@@ -21,4 +21,5 @@ MonoBehaviour:
   output:
     types: 1
     label: 
-  className: Spellcasting.Nodes.Math.Number.AddNumberNode
+  searchTags: Boolean,To,Number
+  className: Spellcasting.Nodes.Math.Number.BooleanToNumberNode

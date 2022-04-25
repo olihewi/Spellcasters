@@ -8,9 +8,12 @@ namespace Spellcasting.Nodes.Math.Vector
     {
       if (!(inputs[0].output is Vector3 v)) return;
       Vector3 result = v;
-      for (int i = 1; i < 5; i++)
+      for (int i = 1; i < inputs.Length; i++)
       {
-        if (inputs[i].output is float f) v *= f;
+        if (inputs[i] != null && inputs[i].output is float f)
+        {
+          result *= f;
+        }
       }
       output = result;
     }

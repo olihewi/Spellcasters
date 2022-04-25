@@ -39,6 +39,7 @@ namespace Spellcasting
       if (nodes.ContainsKey(_pos)) return false;
       Node thisNode = (Node) Activator.CreateInstance(_type);
       thisNode.gridPos = _pos;
+      thisNode.owner = this;
       nodes.Add(_pos, thisNode);
       CompileInputs(new KeyValuePair<Vector2Int, Node>(_pos,thisNode));
       foreach (Vector2Int dir in Node.NeighbourDirections)
@@ -90,7 +91,7 @@ namespace Spellcasting
           if (!nodes.ContainsKey(tile)) continue;
           Node neighbour = nodes[tile];
           NodeOutputInfo outputInfo = neighbour.metadata.output;
-          if (NodeOutputInfo.Compatible(inputInfo, outputInfo) && !neighbour.inputs.Contains(_nodePair.Value))
+          if (NodeOutputInfo.Compatible(inputInfo, outputInfo) && !neighbour.inputs.Contains(_nodePair.Value) && !_nodePair.Value.inputs.Contains(neighbour))
           {
             _nodePair.Value.inputs[i] = neighbour;
             break;

@@ -6,7 +6,7 @@ namespace Spellcasting.Nodes.Selectors
     {
         public override void Tick()
         {
-            output = owner;
+            output = owner.body;
         }
     }
 }

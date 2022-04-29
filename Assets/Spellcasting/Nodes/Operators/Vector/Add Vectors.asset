@@ -29,4 +29,5 @@ MonoBehaviour:
   output:
     types: 2
     label: Sum
+  searchTags: Add,Vectors,Sum,+
   className: Spellcasting.Nodes.Math.Vector.AddVectorNode

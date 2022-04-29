@@ -29,4 +29,5 @@ MonoBehaviour:
   output:
     types: 2
     label: Result
+  searchTags: Subtract,Minus,Vector,-
   className: Spellcasting.Nodes.Math.Vector.SubtractVectorNode

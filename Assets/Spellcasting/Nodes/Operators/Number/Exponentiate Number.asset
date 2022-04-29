@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Exponentiate Number
   m_EditorClassIdentifier: 
   parent: {fileID: 11400000, guid: 05f7d590b3492cd49b829a909eb81364, type: 2}
-  icon: {fileID: 0}
+  icon: {fileID: 2800000, guid: 17c232d12b0f6e84a8da0748f452658c, type: 3}
   description: Returns the first input to the power of the second.
   inputs:
   - types: 1
@@ -23,4 +23,5 @@ MonoBehaviour:
   output:
     types: 0
     label: Result
+  searchTags: Exponentiate,Number,Power,Squared,Cubed
   className: Spellcasting.Nodes.Math.Number.ExponentiateNumberNode

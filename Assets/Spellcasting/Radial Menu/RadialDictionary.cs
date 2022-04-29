@@ -14,6 +14,7 @@ public class RadialDictionary : RadialCategory
     Instance = this;
     nodeDictionary = new Dictionary<Type, RadialNode>();
     AddCategory(this);
+    Debug.Log($"{nodeDictionary.Count} nodes registered!");
   }
 
   private void AddCategory(RadialCategory _category)

@@ -7,7 +7,7 @@ namespace Spellcasting.Nodes.Input
   public class ButtonHeldNode : Node
   {
     public InputAction button;
-    private bool released = false;
+    private bool held = false;
 
     public ButtonHeldNode()
     {
@@ -26,6 +26,7 @@ namespace Spellcasting.Nodes.Input
     }
     public override void Tick()
     {
+      output = held;
     }
 
     public override void OnSelectedInGrid()
@@ -43,11 +44,11 @@ namespace Spellcasting.Nodes.Input
 
     private void OnPressed(InputAction.CallbackContext _ctx)
     {
-      output = true;
+      held = true;
     }
     private void OnReleased(InputAction.CallbackContext _ctx)
     {
-      output = false;
+      held = false;
     }
   }
 }

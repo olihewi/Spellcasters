@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Multiply Numbers
   m_EditorClassIdentifier: 
   parent: {fileID: 11400000, guid: 05f7d590b3492cd49b829a909eb81364, type: 2}
-  icon: {fileID: 0}
+  icon: {fileID: 2800000, guid: 5378e2f26c90d444f83fe5621e8ee7b2, type: 3}
   description: Multiplies all input nodes together
   inputs:
   - types: 1
@@ -29,4 +29,5 @@ MonoBehaviour:
   output:
     types: 1
     label: Result
+  searchTags: Multiply,Times,Number,*,x
   className: Spellcasting.Nodes.Math.Number.MultiplyNumberNode

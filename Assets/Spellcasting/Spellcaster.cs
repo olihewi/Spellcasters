@@ -99,7 +99,7 @@ namespace Spellcasting
             break;
           }
         }
-        if (_nodePair.Value.inputs[i] == null) _nodePair.Value.compiled = false;
+        if (_nodePair.Value.inputs[i] == null && !inputInfo.types.HasFlag(NodeOutputTypes.Optional)) _nodePair.Value.compiled = false;
       }
     }
 

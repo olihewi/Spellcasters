@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Vector Magnitude
   m_EditorClassIdentifier: 
   parent: {fileID: 11400000, guid: bf804f2ec99c7d84987316bb9ce793fa, type: 2}
-  icon: {fileID: 2800000, guid: 7ce72672a372d05428ba4b95f0a0e8b8, type: 3}
+  icon: {fileID: 2800000, guid: 302df1dba8c63594f9881b2518a63232, type: 3}
   description: Outputs the length of a vector.
   inputs:
   - types: 2
@@ -21,4 +21,5 @@ MonoBehaviour:
   output:
     types: 1
     label: Length
+  searchTags: Magnitude,Length,Vector
   className: Spellcasting.Nodes.Math.Vector.VectorMagnitudeNode

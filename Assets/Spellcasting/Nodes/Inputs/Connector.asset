@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa41d1043910f10468c7f2bb0e327c43, type: 3}
+  m_Name: Connector
+  m_EditorClassIdentifier: 
+  parent: {fileID: 11400000, guid: 95ac836feeac55a47b647e3bcaa4082a, type: 2}
+  icon: {fileID: 2800000, guid: cfd1a3cc41219dc448c6940c0b4c3465, type: 3}
+  description: Outputs the value of its input.
+  inputs:
+  - types: 15
+    label: 
+  output:
+    types: 15
+    label: 
+  searchTags: Connector
+  className: Spellcasting.Nodes.Input.ConnectorNode

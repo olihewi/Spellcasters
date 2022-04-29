@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Object Mass
   m_EditorClassIdentifier: 
   parent: {fileID: 11400000, guid: fce903504a72bf345b5a74a0f960295e, type: 2}
-  icon: {fileID: 0}
+  icon: {fileID: 2800000, guid: 10778f25db6e3b442aa9f2186a605367, type: 3}
   description: Outputs the mass of an object.
   inputs:
   - types: 4
@@ -21,4 +21,5 @@ MonoBehaviour:
   output:
     types: 1
     label: Mass
+  searchTags: Get,Object,Mass,Weight
   className: Spellcasting.Nodes.Math.Physics.GetMassNode

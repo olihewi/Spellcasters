@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c03ad332dfeef546afe485a22596e8f, type: 3}
   m_Name: Logic
   m_EditorClassIdentifier: 
-  parent: {fileID: 11400000, guid: 73e4473df9162e94eb833f6607761ba1, type: 2}
+  parent: {fileID: 11400000, guid: 4695288223a7b7244b6030b89e3ccd74, type: 2}
   icon: {fileID: 2800000, guid: 084f71bf77fff1c4fb225d9592dceeda, type: 3}
-  description: Conditional nodes
+  description: Conditional Nodes and Boolean Operators
   elements:
+  - {fileID: 11400000, guid: f22b9f01f0a170b448666742b66d4fdc, type: 2}
+  - {fileID: 11400000, guid: 45f60c58a53596b499e60b6ad498ec73, type: 2}
+  - {fileID: 11400000, guid: 18bd6a77487042a4d9efe17613e5f297, type: 2}
+  - {fileID: 11400000, guid: 51f28c2b44475ea4280e2b10572017a6, type: 2}
   - {fileID: 11400000, guid: 9638b0866607bae469f15484753e29e5, type: 2}
   - {fileID: 11400000, guid: a79bdb399893ab4429b45d6eb764f08a, type: 2}
   - {fileID: 11400000, guid: e92a167d7c8ab21419f3bd06ccce7cc3, type: 2}

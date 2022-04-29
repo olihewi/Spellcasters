@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa41d1043910f10468c7f2bb0e327c43, type: 3}
   m_Name: Raycast Position
   m_EditorClassIdentifier: 
-  parent: {fileID: 0}
-  icon: {fileID: 2800000, guid: 7ce72672a372d05428ba4b95f0a0e8b8, type: 3}
+  parent: {fileID: 11400000, guid: 9f1d485b95027ed49b1a66fa88ba6d10, type: 2}
+  icon: {fileID: 2800000, guid: 9acfd8e3d71781d459cd6a3aa61c9085, type: 3}
   description: Outputs the hit position of a raycast.
   inputs:
   - types: 2
@@ -25,4 +25,5 @@ MonoBehaviour:
   output:
     types: 2
     label: Hit Position
-  className: Spellcasting.Nodes.Math.Vector.VectorMagnitudeNode
+  searchTags: Raycast,Position,Point,Hit,Look
+  className: Spellcasting.Nodes.Math.Vector.RaycastNode

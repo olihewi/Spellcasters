@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Normalize Vector
   m_EditorClassIdentifier: 
   parent: {fileID: 11400000, guid: bf804f2ec99c7d84987316bb9ce793fa, type: 2}
-  icon: {fileID: 2800000, guid: 7ce72672a372d05428ba4b95f0a0e8b8, type: 3}
+  icon: {fileID: 2800000, guid: a34a5e5bd5f325c4186b1a9195ebac64, type: 3}
   description: Outputs the input vector with a length of 1.
   inputs:
   - types: 2
@@ -21,4 +21,5 @@ MonoBehaviour:
   output:
     types: 2
     label: 
+  searchTags: Normalized,Vector
   className: Spellcasting.Nodes.Math.Vector.VectorMagnitudeNode

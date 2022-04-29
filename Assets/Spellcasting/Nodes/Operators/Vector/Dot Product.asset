@@ -23,4 +23,5 @@ MonoBehaviour:
   output:
     types: 1
     label: Dot Product
+  searchTags: Dot,Product
   className: Spellcasting.Nodes.Math.Vector.VectorDotProductNode

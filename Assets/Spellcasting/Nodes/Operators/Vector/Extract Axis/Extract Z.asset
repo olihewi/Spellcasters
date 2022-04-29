@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa41d1043910f10468c7f2bb0e327c43, type: 3}
+  m_Name: Extract Z
+  m_EditorClassIdentifier: 
+  parent: {fileID: 0}
+  icon: {fileID: 2800000, guid: 246f046d3b37ce34fb22d82a3f8a6abc, type: 3}
+  description: Outputs a vector's Z coordinate.
+  inputs:
+  - types: 2
+    label: 
+  output:
+    types: 1
+    label: z
+  searchTags: Extract,Vector,Z
+  className: Spellcasting.Nodes.Math.Vector.ExtractZNode

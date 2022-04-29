@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boolean to Number
   m_EditorClassIdentifier: 
   parent: {fileID: 11400000, guid: 05f7d590b3492cd49b829a909eb81364, type: 2}
-  icon: {fileID: 0}
+  icon: {fileID: 2800000, guid: 9ee2010e5d60acf43be1c53d373b0b92, type: 3}
   description: Outputs 1 if true, and 0 if false.
   inputs:
   - types: 8

@@ -13,7 +13,8 @@ namespace Spellcasting
     [HideInInspector] public Rigidbody body;
     
     public float maxMana = 100.0F;
-    private float currentMana = 100.0F;
+    public float manaRegeneration = 50.0F;
+    [HideInInspector] public float currentMana = 100.0F;
 
     public Dictionary<Vector2Int, Node> nodes = new Dictionary<Vector2Int, Node>();
     public bool executing = true;
@@ -33,6 +34,18 @@ namespace Spellcasting
       {
         if (node.compiled) node.Tick();
       }
+      currentMana += manaRegeneration * Time.deltaTime;
+      currentMana = Mathf.Clamp(currentMana,0.0F, maxMana);
+    }
+
+    public float UseMana(float _amount)
+    {
+      float newMana = Mathf.Max(currentMana - _amount, 0.0F);
+      float usage = currentMana - newMana;
+      currentMana = newMana;
+      float mult = usage / _amount;
+      if (float.IsNaN(mult)) mult = 0.0F;
+      return mult;
     }
 
     public bool AddNode(Vector2Int _pos, Type _type)

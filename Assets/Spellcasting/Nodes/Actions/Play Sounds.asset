@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa41d1043910f10468c7f2bb0e327c43, type: 3}
+  m_Name: Play Sounds
+  m_EditorClassIdentifier: 
+  parent: {fileID: 0}
+  icon: {fileID: 2800000, guid: 06191a25ab189f6448d0c16ccad79ac3, type: 3}
+  description: Plays a sound.
+  inputs:
+  - types: 2
+    label: Position
+  - types: 1
+    label: Volume
+  - types: 1
+    label: Pitch
+  - types: 1
+    label: Instrument Index
+  - types: 1032
+    label: Condition
+  output:
+    types: 0
+    label: 
+  searchTags: Play,Sound
+  className: Spellcasting.Nodes.Actions.PlaySoundNode

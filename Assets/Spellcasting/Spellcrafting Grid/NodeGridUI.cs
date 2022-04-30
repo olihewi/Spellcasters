@@ -25,7 +25,7 @@ public class NodeGridUI : MonoBehaviour
       Vector3 thisPos = rectTransform.position;
       Vector3 difference = Spellcrafting.HexToWorld(input.gridPos, hexSize) - rectTransform.localPosition;
       inputIcons[i].rectTransform.localPosition = difference / 2.0F;
-      inputIcons[i].rectTransform.rotation = Quaternion.Euler(0.0F,0.0F,Mathf.Atan2(difference.y, -difference.x) * Mathf.Deg2Rad);
+      inputIcons[i].rectTransform.rotation = Quaternion.Euler(0.0F,0.0F,Mathf.Atan2(difference.y, -difference.x) * Mathf.Rad2Deg);
       //inputIcons[i].color = NodeOutputColours.Instance.GetColour(_metadata.inputs[i].types);
     }
   }
